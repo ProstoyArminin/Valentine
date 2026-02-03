@@ -86,17 +86,11 @@
 
         <div id="successArea">
     <img src="photo.jpg" id="myPhoto" alt="Love">
-    <h1 style="font-size: 26px; margin-top: 15px;">УРА! 🥰</h1>
+    <h1 style="font-size: 26px; margin-top: 15px;">ДЖААААААН! 🥰</h1>
     <p style="color: #444; font-size: 18px; line-height: 1.4; padding: 0 10px;">
         Ты лучше всех во вселенной и самое прекрасное, что есть в этой жизни)!
     </p> 
-            <div id="loveTimer" style="margin: 20px auto; padding: 15px; background: #fff5f5; border-radius: 20px; border: 2px dashed #ff4757; max-width: 250px;">
-                <p style="margin: 0 0 5px 0; font-size: 14px; color: #ff4757; text-transform: uppercase; letter-spacing: 1px;">Мы вместе уже:</p>
-                <div id="timerDisplay" style="font-weight: bold; font-size: 20px; color: #333; font-family: monospace;"></div>
-            </div>
-
-    <p style="color: #ff4757; font-weight: bold; font-size: 20px; margin-top: 15px;">
-        СИРУМЕМ КЕЗ КЯНКС! ❤️
+            
     </p>
         </div>
         
@@ -162,33 +156,11 @@
                 fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
             }
         };
-                function updateTimer() {
-            // Устанавливаем дату: 23 февраля 2026, 17:42
-            const startDate = new Date('2026-02-23T17:42:00');
-            const now = new Date();
             
-            // Считаем разницу (в миллисекундах)
-            const diff = now - startDate;
-
-            // Если дата еще не наступила, покажем нули или обратный отсчет
-            // Но так как ты просил таймер "сколько мы вместе", расчет идет от даты
-            const days = Math.floor(Math.abs(diff) / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((Math.abs(diff) / (1000 * 60 * 60)) % 24);
-            const mins = Math.floor((Math.abs(diff) / 1000 / 60) % 60);
-            const secs = Math.floor((Math.abs(diff) / 1000) % 60);
-
-            const display = document.getElementById('timerDisplay');
-            if (display) {
-                display.innerHTML = days + "д " + hours + "ч " + mins + "м " + secs + "с";
-            }
-        }
-
-        // Обновляем каждую секунду
-        setInterval(updateTimer, 1000);
-        updateTimer();
   </script>
 </body>
 </html>
+
 
 
 
