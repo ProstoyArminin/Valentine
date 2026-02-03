@@ -162,8 +162,33 @@
                 fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
             }
         };
-    </script>
+                function updateTimer() {
+            // Устанавливаем дату: 23 февраля 2026, 17:42
+            const startDate = new Date('2026-02-23T17:42:00');
+            const now = new Date();
+            
+            // Считаем разницу (в миллисекундах)
+            const diff = now - startDate;
+
+            // Если дата еще не наступила, покажем нули или обратный отсчет
+            // Но так как ты просил таймер "сколько мы вместе", расчет идет от даты
+            const days = Math.floor(Math.abs(diff) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((Math.abs(diff) / (1000 * 60 * 60)) % 24);
+            const mins = Math.floor((Math.abs(diff) / 1000 / 60) % 60);
+            const secs = Math.floor((Math.abs(diff) / 1000) % 60);
+
+            const display = document.getElementById('timerDisplay');
+            if (display) {
+                display.innerHTML = days + "д " + hours + "ч " + mins + "м " + secs + "с";
+            }
+        }
+
+        // Обновляем каждую секунду
+        setInterval(updateTimer, 1000);
+        updateTimer();
+  </script>
 </body>
 </html>
+
 
 
