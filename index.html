@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моей Валентинке ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, #fff0f0 0%, #ffcaca 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            background: white;
+            padding: 50px;
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 90%;
+            z-index: 10;
+            position: relative;
+        }
+
+        .heart {
+            font-size: 100px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        h1 {
+            color: #d63031;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        .btns-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            min-height: 150px; /* Место для роста кнопки */
+        }
+
+        button {
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s;
+        }
+
+        #yesBtn {
+            background-color: #2ed573;
+            color: white;
+            padding: 15px 40px;
+            font-size: 20px;
+            z-index: 999; /* Чтобы была поверх всего при росте */
+        }
+
+        #noBtn {
+            background-color: #ff4757;
+            color: white;
+            padding: 15px 40px;
+            font-size: 20px;
+        }
+
+        .hidden { display: none !important; }
+
+        #successArea h1 { font-size: 40px; }
+        .confetti {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainCard">
+        <div id="emoji" class="heart">❤️</div>
+        
+        <div id="questionArea">
+            <h1>Окажите мне честь стать моей Валентинкой и властительницей сердца?</h1>
+            <div class="btns-wrapper">
+                <button id="yesBtn" onclick="accept()">Да</button>
+                <button id="noBtn" onclick="refuse()">Нет</button>
+            </div>
+        </div>
+
+        <div id="successArea" class="hidden">
+            <h1>ДЖААААН! 🥰</h1>
+            <p style="font-size: 20px; color: #444;">Ты лучше всех во вселенной и самое прекрасное, что есть в этой жизни)!</p>
+            <p style="font-size: 24px; font-weight: bold; color: #ff4757;">СИРУМЕМ КЕЗ КЯНКС! ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        var yesBtn = document.getElementById('yesBtn');
+        var noBtn = document.getElementById('noBtn');
+        var emoji = document.getElementById('emoji');
+        var qArea = document.getElementById('questionArea');
+        var sArea = document.getElementById('successArea');
+
+        var yesScale = 1;
+        var noPhrases = [
+            "Уверена?", 
+            "Подумай еще!", 
+            "Точно-точно?", 
+            "Я буду плакать...", 
+            "Без вариантов!",
+            "Жми кнопку слева!"
+        ];
+        var phraseIdx = 0;
+
+        function refuse() {
+            // 1. Увеличиваем кнопку "Да"
+            yesScale += 0.6; // Каждое нажатие увеличивает кнопку на 60%
+
+
+yesBtn.style.transform = "scale(" + yesScale + ")";
+            
+            // 2. Меняем текст на кнопке "Нет"
+            noBtn.innerText = noPhrases[phraseIdx];
+            phraseIdx = (phraseIdx + 1) % noPhrases.length;
+            
+            // 3. Сердце расстраивается
+            emoji.innerText = "😢";
+        }
+
+        function accept() {
+            qArea.classList.add('hidden');
+            sArea.classList.remove('hidden');
+            emoji.innerText = "💖";
+            emoji.style.animation = "pulse 0.4s infinite";
+            
+            // Эффект конфетти
+            for(var i=0; i<150; i++) {
+                spawnConfetti();
+            }
+        }
+
+        function spawnConfetti() {
+            var el = document.createElement('div');
+            el.className = 'confetti';
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.top = '-20px';
+            el.style.backgroundColor = 'hsl(' + (Math.random() * 360) + ', 100%, 50%)';
+            el.style.borderRadius = Math.random() > 0.5 ? '50%' : '0%';
+            document.body.appendChild(el);
+
+            var pos = 0;
+            var speed = 3 + Math.random() * 7;
+            var drift = (Math.random() - 0.5) * 4;
+            
+            var timer = setInterval(function() {
+                if (pos > window.innerHeight) {
+                    clearInterval(timer);
+                    document.body.removeChild(el);
+                } else {
+                    pos += speed;
+                    el.style.top = pos + 'px';
+                    el.style.left = (parseFloat(el.style.left) + drift) + 'vw';
+                    el.style.transform = 'rotate(' + (pos * 2) + 'deg)';
+                }
+            }, 20);
+        }
+    </script>
+</body>
+</html>
