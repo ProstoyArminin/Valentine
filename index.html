@@ -8,14 +8,25 @@
         body {
             margin: 0; height: 100vh; display: flex; justify-content: center; align-items: center;
             background: #ffe6e6; font-family: 'Segoe UI', Tahoma, sans-serif; overflow: hidden; text-align: center;
-            touch-action: none; /* Важно для шлейфа на iPhone */
+            touch-action: none; 
         }
         .container {
             background: white; padding: 30px; border-radius: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 85%; max-width: 400px; z-index: 10;
+            box-shadow: 0 10px 40px rgba(255, 71, 87, 0.2); width: 85%; max-width: 400px; z-index: 10;
             position: relative;
         }
-        .heart { font-size: 60px; margin-bottom: 10px; pointer-events: none; }
+
+        /* 1. Анимация пульсации сердца */
+        .heart { 
+            font-size: 60px; margin-bottom: 10px; pointer-events: none; 
+            display: inline-block;
+            animation: heartbeat 1.2s infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
         h1 { color: #ff4757; font-size: 22px; margin-bottom: 20px; pointer-events: none; }
         
         .btns { display: flex; justify-content: center; gap: 15px; align-items: center; min-height: 120px; }
@@ -23,28 +34,37 @@
         button { 
             padding: 15px 25px; border: none; border-radius: 50px; 
             cursor: pointer; font-weight: bold; font-size: 18px; 
-            touch-action: manipulation;
+            touch-action: manipulation; transition: 0.2s;
         }
-        #yesBtn { background: #2ed573; color: white; position: relative; z-index: 1000; transition: transform 0.2s; }
-        #noBtn { background: #ff4757; color: white; position: relative; z-index: 100; }
+        #yesBtn { background: #2ed573; color: white; position: relative; z-index: 1000; }
+        #noBtn { background: #ff4757; color: white; position: relative; }
+
+        /* 2. Плавное появление фото */
+        #successArea {
+            display: none;
+            animation: fadeIn 1s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
 
         #myPhoto {
-            width: 150px; height: 150px; margin: 10px auto;
-            border-radius: 50%; border: 4px solid #ff4757;
-            display: none; object-fit: cover;
+            width: 180px; height: 180px; margin: 10px auto;
+            border-radius: 20px; border: 5px solid #ff4757;
+            object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* Стиль для шлейфа */
+        /* 3. Шлейф сердечек */
         .cursor-heart {
             position: absolute; color: #ff4757; pointer-events: none;
             font-size: 20px; z-index: 9999;
             animation: fadeUp 1s ease-out forwards;
         }
         @keyframes fadeUp {
-            0% { opacity: 1; transform: translate(0, 0) scale(1); }
-            100% { opacity: 0; transform: translate(var(--side), -100px) scale(0.5); }
+            0% { opacity: 1; transform: translate(0, 0) rotate(0deg); }
+            100% { opacity: 0; transform: translate(var(--side), -120px) rotate(20deg); }
         }
-        .hidden { display: none; }
     </style>
 </head>
 <body>
@@ -57,18 +77,17 @@
         <div id="emoji" class="heart">❤️</div>
         
         <div id="questionArea">
-            <h1>Окажете ли вы мне честь стать моей валентинкой и властительницой сердца?</h1>
+            <h1>Станешь моей Валентинкой?</h1>
             <div class="btns">
                 <button id="yesBtn">Да</button>
                 <button id="noBtn">Нет</button>
             </div>
         </div>
 
-        <div id="successArea" class="hidden">
+        <div id="successArea">
             <img src="photo.jpg" id="myPhoto" alt="Love">
-            <h1 style="font-size: 28px;">ДЖАААААН 🥰</h1>
-            <p>Ты лучше всех во вселенной и самое прекрасное, что есть в моей жизни Вампирша моя)!</p>
-            <p style="color: #ff4757; font-weight: bold;">СИРУМЕМ КЕЗ КЯНКС! ❤️</p>
+            <h1 style="font-size: 26px; margin-top: 15px;">УРА! 🥰</h1>
+            <p style="color: #ff4757; font-weight: bold; font-size: 20px;">СИРУМЕМ КЕЗ КЯНКС! ❤️</p>
         </div>
     </div>
 
@@ -80,14 +99,14 @@
         const emoji = document.getElementById('emoji');
         const audio = document.getElementById('audio');
 
-        // Логика шлейфа
+        // Шлейф
         function spawnHeart(x, y) {
             const h = document.createElement('div');
             h.className = 'cursor-heart';
             h.innerHTML = '❤️';
             h.style.left = x + 'px';
             h.style.top = y + 'px';
-            h.style.setProperty('--side', ((Math.random() - 0.5) * 50) + 'px');
+            h.style.setProperty('--side', ((Math.random() - 0.5) * 60) + 'px');
             document.body.appendChild(h);
             setTimeout(() => h.remove(), 1000);
         }
@@ -97,26 +116,35 @@
             spawnHeart(e.touches[0].pageX, e.touches[0].pageY);
         }, {passive: true});
 
-// Логика кнопок
+        // Кнопка НЕТ
         noBtn.onclick = function() {
-            scale += 0.6;
+            scale += 0.7;
             yesBtn.style.transform = "scale(" + scale + ")";
-            noBtn.innerText = "Точно?";
-            emoji.innerText = "😢";
+            noBtn.style.transform = "translateX(" + ((Math.random()-0.5)*20) + "px)";
+            emoji.innerText = "🥺";
         };
 
+        // Кнопка ДА
         yesBtn.onclick = function() {
             document.getElementById('questionArea').style.display = "none";
-            document.getElementById('successArea').classList.remove('hidden');
-            document.getElementById('myPhoto').style.display = "block";
+            document.getElementById('successArea').style.display = "block";
             emoji.innerText = "💖";
+            emoji.style.animation = "heartbeat 0.6s infinite"; // Ускоряем пульс от радости!
             
-            // Пытаемся включить музыку
-            audio.play().catch(() => console.log("Музыка ждет взаимодействия"));
+            audio.play().catch(() => console.log("Нужен клик для звука"));
 
-            // Конфетти
             if (window.confetti) {
-                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+                // Праздничный салют
+                var count = 200;
+                var defaults = { origin: { y: 0.7 } };
+                function fire(particleRatio, opts) {
+                  confetti(Object.assign({}, defaults, opts, {
+                    particleCount: Math.floor(count * particleRatio)
+                  }));
+                }
+                fire(0.25, { spread: 26, startVelocity: 55 });
+                fire(0.2, { spread: 60 });
+                fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
             }
         };
     </script>
