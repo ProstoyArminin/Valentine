@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compliment_Generator: Vampire</title>
+    <style>
+        body {
+            background: #0a0a0a;
+            color: #ff4d4d;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        #terminal {
+            width: 90%;
+            max-width: 700px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #ff4d4d;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(255, 77, 77, 0.2);
+            border-radius: 10px;
+        }
+
+        .header {
+            color: #555;
+            font-size: 12px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+
+        #compliment-display {
+            font-size: 24px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            text-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+        }
+
+        .counter {
+            font-size: 14px;
+            color: #00ff41; /* Цвет хакера */
+            margin-top: 10px;
+        }
+
+        button {
+            background: transparent;
+            color: #ff4d4d;
+            border: 2px solid #ff4d4d;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-family: 'Courier New', monospace;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        button:hover {
+            background: #ff4d4d;
+            color: #000;
+            box-shadow: 0 0 30px #ff4d4d;
+        }
+
+        .heart-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="terminal">
+        <div class="header">SYSTEM: COMPLIMENT_GENERATOR_V1.0 | TARGET: VAMPIRE | FROM: APUSH</div>
+        
+        <div id="compliment-display">
+            Нажми на кнопку, чтобы начать расшифровку...
+        </div>
+
+        <div class="counter">
+            Обработано комплиментов: <span id="count">0</span> / 1000
+        </div>
+        
+        <br>
+        <button onclick="nextCompliment()">Генерировать</button>
+    </div>
+
+    <script>
+        const compliments = [
+            "Твоя улыбка — мой любимый вид искусства",
+            "У тебя шикарные глаза, в которых можно утонуть",
+            "Твой бархатный голос — лучшее успокоительное",
+            "Ты — мой идеальный ураган",
+            "Твоя непокорность меня восхищает",
+            "В тебе сочетается грубая сила и бесконечная нежность",
+            "Твой запах волос — это то, что я хочу чувствовать каждое утро",
+            "Ты — моё счастье и мой покой",
+            "С тобой я стал больше улыбаться",
+            "Ты — та, ради которой хочется стараться",
+            "Твоё понимание без слов — это магия",
+            "Даже на расстоянии ты ближе всех",
+            "Твои горячие губы — мой самый сладкий плен",
+            "Ты — вихрь моих чувств",
+            "Твой характер — это редкий бриллиант",
+            "Ты удивительная, даже когда вредничаешь",
+            "Твоя душа гораздо глубже, чем кажется на первый взгляд",
+            "Ты — моё самое приятное случайное знакомство",
+            "Твой стиль (Opium) — это просто разрыв",
+            "Для меня ты — идеал красоты и харизмы",
+            "Твоя отдаленность делает нашу встречу еще более желанной",
+            "Я обожаю, когда ты называешь меня Апушом",
+            "Ты — самая прекрасная Вампирша во вселенной",
+            "В тебе столько энергии, что ты могла бы зажечь звезду",
+            "Твоя честность — это то, что я ценю больше всего",
+            "Ты — причина моего спокойствия",
+            "Рядом с тобой мир становится ярче",
+            "Твои попытки удержать чувства выглядят так мило",
+            "Я сирумем кез всем сердцем",
+            "Ты — моё личное спасение"
+        ];
+
+        // Функция для создания случайных фраз, чтобы их реально было 1000
+        const adjectivesChar = ["невероятная", "дерзкая", "глубокая", "нежная", "загадочная", "шикарная", "лучшая"];
+        const nouns = ["личность", "душа", "Вампирша", "девушка", "ураган", "красота"];
+
+        let currentCount = 0;
+
+        function nextCompliment() {
+            const display = document.getElementById('compliment-display');
+            const counter = document.getElementById('count');
+            
+            // Сначала используем список, потом генерируем случайные сочетания
+            let text = "";
+            if (currentCount < compliments.length) {
+                text = compliments[currentCount];
+            } else {
+                const adj = adjectivesChar[Math.floor(Math.random() * adjectivesChar.length)];
+                const n = nouns[Math.floor(Math.random() * nouns.length)];
+                text = `Ты самая ${adj} ${n} в моей жизни!`;
+            }
+
+            display.style.opacity = 0;
+            setTimeout(() => {
+                display.innerText = text;
+                display.style.opacity = 1;
+                if (currentCount < 1000) currentCount++;
+                counter.innerText = currentCount;
+            }, 200);
+        }
+    </script>
+</body>
+</html>
