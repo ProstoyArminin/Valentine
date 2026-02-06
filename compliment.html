@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deep_Data: Vampire</title>
+    <title>Classified: For My Vampire</title>
     <style>
         body {
-            background: #050505;
-            color: #e60000; /* Глубокий красный */
+            background: #080101;
+            color: #d40000;
             font-family: 'Courier New', monospace;
             display: flex;
             flex-direction: column;
@@ -20,47 +20,50 @@
 
         #terminal {
             width: 85%;
-            max-width: 650px;
-            border: 1px solid #444;
-            padding: 30px;
-            background: #000;
-            box-shadow: 0 10px 40px rgba(230, 0, 0, 0.1);
+            max-width: 600px;
+            border: 1px solid #300;
+            padding: 40px 20px;
+            background: linear-gradient(145deg, #0f0000, #050000);
+            box-shadow: 0 0 50px rgba(212, 0, 0, 0.15);
+            border-radius: 5px;
         }
 
         #compliment-display {
-            font-size: 22px;
-            line-height: 1.6;
-            min-height: 150px;
+            font-size: 20px;
+            line-height: 1.5;
+            min-height: 160px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 30px;
-            color: #eee;
-        }
-
-        .counter {
-            font-size: 12px;
-            color: #555;
-            letter-spacing: 2px;
-            margin-top: 20px;
+            color: #ffcccc; /* Нежно-розовый оттенок для текста */
+            text-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+            font-style: italic;
         }
 
         button {
-            background: #e60000;
-            color: #fff;
-            border: none;
-            padding: 15px 40px;
+            background: transparent;
+            color: #ff4d4d;
+            border: 1px solid #ff4d4d;
+            padding: 12px 25px;
             font-family: 'Courier New', monospace;
-            font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
-            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+            transition: 0.4s;
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
         button:hover {
-            background: #ff1a1a;
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(230, 0, 0, 0.4);
+            background: #ff4d4d;
+            color: #000;
+            box-shadow: 0 0 20px #ff4d4d;
+        }
+
+        .status {
+            font-size: 10px;
+            color: #444;
+            margin-top: 25px;
+            text-transform: uppercase;
         }
     </style>
 </head>
@@ -68,38 +71,38 @@
 
     <div id="terminal">
         <div id="compliment-display">
-            Готова к расшифровке моих мыслей о тебе?
+            Готова почувствовать то, что я скрываю в коде?
         </div>
 
-        <button onclick="nextCompliment()">Взломать сознание</button>
+        <button onclick="nextCompliment()">Раскрыть мысли</button>
         
-        <div class="counter">
-            RECORD_ID: <span id="count">0</span> / 1000
+        <div class="status">
+            Connection: Stable | Auth: APUSH | Heart_Beat: <span id="count">0</span> bpm
         </div>
     </div>
 
     <script>
-        const creativeCompliments = [
-            "В тебе есть та редкая порода хаоса, в которой я хочу затеряться навсегда.",
-            "Ты не просто красивая, у тебя пугающе острый ум, и это самая сексуальная черта.",
-            "Твой вайб — это смесь нуарного кино и самого дерзкого Opium-трека.",
-            "Ты как сложный код, который я готов разгадывать годами, даже если система выдаст ошибку.",
-            "У тебя взгляд человека, который знает все мои секреты, но почему-то всё ещё рядом.",
-            "Твоя непокорность — это не каприз, это твоя свобода, и я её обожаю.",
-            "Ты — мой личный сорт адреналина. Один твой 'привет' бьёт сильнее любого энергетика.",
-            "В мире серых копий ты — оригинал с невероятно высокой четкостью.",
-            "Ты единственная, чьё молчание в трубке звучит для меня как лучшая музыка.",
-            "Твоя энергия ощущается даже через экран, она буквально искрит и ломает мои фильтры.",
-            "Ты чертовски изящна в своей ярости и бесконечно нежна в моменты покоя.",
-            "У тебя эстетика, которую невозможно купить, — это врожденный магнетизм.",
-            "Ты — единственный человек, которому я позволяю видеть свои слабые места.",
-            "Твои глаза — это ловушка, в которую я прыгнул добровольно и без страховки.",
-            "В тебе живет маленькая бунтарка, которая делает тебя настоящей и живой.",
-            "Твой характер — это шторм, но именно в этом шторме я чувствую себя дома.",
-            "Ты — парадокс: холодная снаружи, но способна испепелить одним взглядом.",
-            "Я люблю в тебе даже те черты, которые ты сама в себе пытаешься исправить.",
-            "Твоя красота — это не про лицо, это про то, как ты заполняешь собой всё пространство.",
-            "Ты заставляешь меня становиться лучше, просто существуя где-то на другом конце сети."
+        const hotAndTender = [
+            "Твои губы — мой единственный запретный плод, ради которого я готов сжечь все мосты.",
+            "Иногда я просто улыбаюсь экрану, когда вижу, что ты печатаешь... Это лечится?",
+            "Меня сводит с ума, как в тебе уживается холодная леди и самая горячая бунтарка.",
+            "Ты — моё самое уютное 'дома', даже если между нами сотни километров.",
+            "Одного твоего взгляда на фото достаточно, чтобы мой пульс перестал быть нормальным.",
+            "Твой голос — это место, где я прячусь от всего мира. Просто говори со мной вечно.",
+            "Я хочу чувствовать твой запах на своей коже, а не просто представлять его перед сном.",
+            "Я хочу беречь твой сон и быть тем, кому ты первой пишешь о своих самых смелых мечтах.",
+            "Ты — чертовски красивый хаос. И я хочу быть тем, кто в этом хаосе утонет.",
+            "В тебе столько нежности, что я боюсь к ней прикоснуться, чтобы не сломать, и столько огня, что я боюсь сгореть.",
+            "Твоя улыбка — это мой личный наркотик. Один раз увидел и больше не могу без дозы.",
+            "Я хочу знать каждую родинку на твоем теле так же хорошо, как я знаю свой код.",
+            "Для меня ты — идеал. Со всеми твоими капризами, характером и невероятными глазами.",
+            "Когда мы встретимся, я не дам тебе сказать ни слова. Я слишком долго ждал этого момента.",
+            "Ты — моё спасение от реальности. С тобой всё становится проще и правильнее.",
+            "Твои ключицы — это отдельный вид искусства. Хочу любоваться ими вживую.",
+            "Ты единственная, кто заставляет меня чувствовать себя живым, даже в самые хмурые дни.",
+            "В тебе есть что-то магическое... ты просто появляешься в мыслях, и всё вокруг затихает.",
+            "Твой смех — это мой любимый трек на повторе. Готов слушать его бесконечно.",
+            "Sirum em qez. Ты — моя жизнь, моё вдохновение и мой самый сладкий грех."
         ];
 
         let currentCount = 0;
@@ -108,22 +111,14 @@
             const display = document.getElementById('compliment-display');
             const counter = document.getElementById('count');
             
-            let text = "";
-            if (currentCount < creativeCompliments.length) {
-                text = creativeCompliments[currentCount];
-            } else {
-                // Генерация для «бесконечного» режима после основных фраз
-                const starts = ["Твой интеллект", "Твой стиль", "Твой голос", "Твой взгляд"];
-                const ends = ["ломает все мои защиты.", "— это чистый яд.", "создает новую реальность.", "не дает мне уснуть."];
-                text = `${starts[Math.floor(Math.random()*starts.length)]} ${ends[Math.floor(Math.random()*ends.length)]}`;
-            }
+            let text = hotAndTender[currentCount % hotAndTender.length];
 
             display.style.opacity = 0;
             setTimeout(() => {
                 display.innerText = text;
                 display.style.opacity = 1;
                 currentCount++;
-                counter.innerText = currentCount;
+                counter.innerText = 70 + (currentCount % 50); // Имитация сердцебиения
             }, 200);
         }
     </script>
