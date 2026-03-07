@@ -1,0 +1,2266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Кянкс, открой это 🌸</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Tenor+Sans&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --pearl:#fdf7f4;--blush:#f7dde4;--rose:#ebb5c2;
+  --dusty:#d4849a;--mauve:#a85e7a;--deep:#7a3a58;
+  --gold:#c9a05a;--gold-lt:#ead9b0;--dark:#1e1220;--soft:#5a3a50;
+  --safe-top:env(safe-area-inset-top,0px);
+  --safe-bot:env(safe-area-inset-bottom,0px);
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;-webkit-overflow-scrolling:touch}
+body{
+  font-family:'Tenor Sans',sans-serif;
+  background:var(--pearl);color:var(--dark);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding-bottom:calc(env(safe-area-inset-bottom,0px) + 20px);
+  /* iOS momentum scroll */
+  -webkit-overflow-scrolling:touch;
+}
+/* Hide custom cursor on touch devices */
+@media(pointer:fine){
+  body{cursor:none}
+  .cursor,.cursor-ring{display:block}
+}
+@media(pointer:coarse){
+  .cursor,.cursor-ring{display:none}
+}
+.cursor{width:10px;height:10px;background:var(--mauve);border-radius:50%;position:fixed;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);mix-blend-mode:multiply;display:none}
+.cursor-ring{width:34px;height:34px;border:1.5px solid var(--dusty);border-radius:50%;position:fixed;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);opacity:.4;transition:all .14s ease;display:none}
+
+/* MESH BG */
+.bg-mesh{
+  position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse at 15% 15%,rgba(247,221,228,.9) 0%,transparent 48%),
+    radial-gradient(ellipse at 85% 8%,rgba(228,216,240,.75) 0%,transparent 44%),
+    radial-gradient(ellipse at 55% 85%,rgba(247,221,228,.65) 0%,transparent 50%),
+    radial-gradient(ellipse at 8% 72%,rgba(200,178,224,.55) 0%,transparent 44%),
+    linear-gradient(140deg,#fdf7f4 0%,#fceef3 40%,#f4ecf8 70%,#fdf7f4 100%);
+  animation:meshDrift 14s ease-in-out infinite alternate;
+}
+@keyframes meshDrift{
+  0%{filter:hue-rotate(0deg) brightness(1)}
+  50%{filter:hue-rotate(6deg) brightness(1.03)}
+  100%{filter:hue-rotate(-4deg) brightness(.97)}
+}
+
+/* FLOAT LAYER */
+.float-layer{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.fe{position:absolute;bottom:-80px;line-height:1;animation:floatUp linear infinite;opacity:0;user-select:none}
+@keyframes floatUp{
+  0%{transform:translateY(0) rotate(0deg) scale(.8);opacity:0}
+  10%{opacity:.6}
+  85%{opacity:.35}
+  100%{transform:translateY(-115vh) rotate(360deg) scale(1.15);opacity:0}
+}
+.fe:nth-child(1){left:4%;font-size:1.3rem;animation-duration:12s;animation-delay:0s}
+.fe:nth-child(2){left:11%;font-size:1.8rem;animation-duration:15s;animation-delay:2.1s}
+.fe:nth-child(3){left:19%;font-size:1.1rem;animation-duration:10s;animation-delay:4.3s}
+.fe:nth-child(4){left:27%;font-size:2rem;animation-duration:18s;animation-delay:1s}
+.fe:nth-child(5){left:35%;font-size:1.4rem;animation-duration:13s;animation-delay:6.5s}
+.fe:nth-child(6){left:43%;font-size:1.7rem;animation-duration:16s;animation-delay:3.2s}
+.fe:nth-child(7){left:51%;font-size:1.2rem;animation-duration:11s;animation-delay:7.8s}
+.fe:nth-child(8){left:59%;font-size:1.9rem;animation-duration:17s;animation-delay:.5s}
+.fe:nth-child(9){left:67%;font-size:1.5rem;animation-duration:14s;animation-delay:5s}
+.fe:nth-child(10){left:75%;font-size:1rem;animation-duration:9s;animation-delay:2.7s}
+.fe:nth-child(11){left:83%;font-size:2rem;animation-duration:20s;animation-delay:8.4s}
+.fe:nth-child(12){left:91%;font-size:1.3rem;animation-duration:12s;animation-delay:1.8s}
+.fe:nth-child(13){left:7%;font-size:1.8rem;animation-duration:16s;animation-delay:9.1s}
+.fe:nth-child(14){left:47%;font-size:1.2rem;animation-duration:11s;animation-delay:10.5s}
+.fe:nth-child(15){left:63%;font-size:1.7rem;animation-duration:13s;animation-delay:3.7s}
+.fe:nth-child(16){left:23%;font-size:1.4rem;animation-duration:18s;animation-delay:6.2s}
+.fe:nth-child(17){left:88%;font-size:1.9rem;animation-duration:14s;animation-delay:11.3s}
+.fe:nth-child(18){left:96%;font-size:1.5rem;animation-duration:12s;animation-delay:5.5s}
+
+#petalCanvas{position:fixed;inset:0;z-index:2;pointer-events:none}
+.page-wrapper{position:relative;z-index:3}
+
+/* ═══════ MUSIC PLAYER ═══════ */
+.music-player{
+  position:fixed;
+  bottom:calc(env(safe-area-inset-bottom,0px) + 14px);
+  right:16px;z-index:9000;
+  display:flex;align-items:center;gap:.55rem;
+  background:rgba(122,58,88,.92);
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.18);border-radius:100px;
+  padding:.5rem 1rem .5rem .6rem;
+  box-shadow:0 4px 24px rgba(122,58,88,.45);
+  transition:all .3s ease;
+}
+.music-btn{
+  width:34px;height:34px;border-radius:50%;border:none;
+  background:linear-gradient(135deg,var(--dusty),var(--mauve));
+  color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:transform .2s ease;touch-action:manipulation;-webkit-appearance:none;
+}
+.music-btn:active{transform:scale(.9)}
+.music-info{display:flex;flex-direction:column;max-width:130px}
+.music-title{font-family:'Cormorant Garamond',serif;font-size:.72rem;font-style:italic;color:rgba(255,255,255,.95);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.music-sub{font-family:'Tenor Sans',sans-serif;font-size:.6rem;color:rgba(255,255,255,.55);letter-spacing:.08em}
+.music-eq{display:flex;align-items:flex-end;gap:2px;height:14px;margin-left:.2rem}
+.music-eq span{width:3px;border-radius:2px;background:var(--rose);animation:eq 1.1s ease-in-out infinite alternate}
+.music-eq span:nth-child(1){height:6px;animation-delay:0s}
+.music-eq span:nth-child(2){height:12px;animation-delay:.15s}
+.music-eq span:nth-child(3){height:8px;animation-delay:.3s}
+.music-eq span:nth-child(4){height:14px;animation-delay:.08s}
+.music-eq.paused span{animation-play-state:paused;height:4px!important}
+@keyframes eq{from{transform:scaleY(.4)}to{transform:scaleY(1)}}
+
+/* ═══════ MASTER JOURNEY ═══════ */
+.journey-section{padding:0}
+.journey-container{padding:1.8rem 1.4rem;text-align:center}
+.journey-intro{display:flex;flex-direction:column;align-items:center;gap:1rem}
+.journey-lock-icon{font-size:3rem;animation:emojiPop 3s ease-in-out infinite}
+.journey-main-title{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,5.5vw,2rem);font-style:italic;color:var(--deep)}
+.journey-main-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(.9rem,3.5vw,1.05rem);font-style:italic;color:var(--soft);line-height:1.85;max-width:500px;margin:0 auto}
+.journey-start-btn{margin-top:.6rem}
+.journey-phase-banner{display:flex;flex-direction:column;align-items:center;gap:.2rem;margin-bottom:.8rem}
+.journey-phase-label{font-family:'Tenor Sans',sans-serif;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--dusty)}
+.journey-phase-name{font-family:'Playfair Display',serif;font-size:clamp(1rem,4vw,1.4rem);font-style:italic;color:var(--deep)}
+.journey-progress-wrap{width:100%;height:5px;background:rgba(212,132,154,.18);border-radius:3px;overflow:hidden;margin-bottom:.6rem}
+.journey-progress-bar{height:100%;background:linear-gradient(90deg,var(--rose),var(--mauve));border-radius:3px;width:0%;transition:width .8s cubic-bezier(.22,1,.36,1)}
+.journey-step-counter{font-family:'Cormorant Garamond',serif;font-size:.75rem;font-style:italic;color:var(--dusty);letter-spacing:.2em;margin-bottom:1rem}
+.journey-card{padding:1.6rem 1.4rem;margin-bottom:1.2rem;position:relative;min-height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem}
+.journey-card-phase-dot{width:10px;height:10px;border-radius:50%;background:var(--mauve);box-shadow:0 0 10px rgba(168,94,122,.5);flex-shrink:0}
+.journey-instruction{font-family:'Playfair Display',serif;font-size:clamp(1rem,4.2vw,1.3rem);font-style:italic;color:var(--dark);line-height:1.75;text-align:center;opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+.journey-instruction.show{opacity:1;transform:translateY(0)}
+.journey-instruction em{color:var(--mauve)}
+.journey-instruction strong{color:var(--deep);font-style:normal}
+.journey-timer-wrap{display:flex;justify-content:center;margin-top:.4rem}
+.journey-timer-ring{position:relative;width:60px;height:60px;flex-shrink:0}
+.journey-timer-ring svg{width:60px;height:60px}
+.journey-timer-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Tenor Sans',sans-serif;font-size:1rem;color:var(--mauve);font-weight:bold}
+.journey-gate{margin-bottom:1rem}
+.journey-gate-inner{padding:1.4rem 1.2rem;text-align:center}
+.journey-gate-icon{font-size:2rem;margin-bottom:.6rem}
+.journey-gate-text{font-family:'Cormorant Garamond',serif;font-size:clamp(.9rem,3.5vw,1.05rem);font-style:italic;color:var(--deep);line-height:1.8;margin-bottom:1rem}
+.journey-gate-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.gate-btn{
+  font-family:'Cormorant Garamond',serif;font-size:.92rem;font-style:italic;
+  border:1.5px solid rgba(235,181,194,.5);border-radius:100px;padding:.55em 1.4em;
+  background:rgba(255,255,255,.4);color:var(--soft);cursor:pointer;
+  transition:all .22s ease;touch-action:manipulation;-webkit-appearance:none;min-height:44px;
+}
+.gate-btn.primary{background:linear-gradient(135deg,var(--dusty),var(--mauve));color:#fff;border-color:transparent;box-shadow:0 4px 16px rgba(168,94,122,.3)}
+.gate-btn.danger{background:rgba(168,94,122,.1);border-color:rgba(168,94,122,.3);color:var(--mauve)}
+.gate-btn:active{transform:scale(.95)}
+.journey-next-btn{display:block;margin:0 auto}
+.journey-hint{font-family:'Cormorant Garamond',serif;font-size:.8rem;font-style:italic;color:var(--dusty);margin-top:.8rem;letter-spacing:.1em;min-height:1rem}
+.journey-finale{display:flex;flex-direction:column;align-items:center;gap:.8rem}
+.journey-finale-emoji{font-size:3.5rem;animation:emojiPop 2.5s ease-in-out infinite}
+.journey-finale-title{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,5.5vw,2rem);font-style:italic;color:var(--deep)}
+.journey-finale-text{font-family:'Cormorant Garamond',serif;font-size:clamp(.9rem,3.5vw,1.08rem);font-style:italic;color:var(--soft);line-height:1.9;max-width:460px}
+.journey-finale-text em{color:var(--mauve)}
+
+/* ═══════ COMMAND GAME ═══════ */
+.command-section{padding:0}
+.command-container{padding:1.8rem 1.4rem;text-align:center}
+.command-title{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,5vw,1.65rem);font-style:italic;color:var(--deep);margin-bottom:.4rem}
+.command-subtitle{font-family:'Cormorant Garamond',serif;font-size:clamp(.88rem,3.5vw,1.02rem);font-style:italic;color:var(--soft);margin-bottom:1.6rem;line-height:1.75}
+.command-stage{min-height:110px;padding:1.4rem 1.2rem;margin-bottom:1.2rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem}
+.command-step-num{font-family:'Cormorant Garamond',serif;font-size:.72rem;font-style:italic;letter-spacing:.3em;color:var(--dusty);text-transform:uppercase}
+.command-text{font-family:'Playfair Display',serif;font-size:clamp(1rem,4.2vw,1.35rem);font-style:italic;color:var(--dark);line-height:1.6;opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease}
+.command-text.show{opacity:1;transform:translateY(0)}
+.command-text em{color:var(--mauve)}
+.command-intensity{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:1.2rem}
+.cint-btn{font-family:'Cormorant Garamond',serif;font-size:.82rem;font-style:italic;border:1.5px solid rgba(235,181,194,.4);border-radius:100px;padding:.4em 1.1em;background:rgba(255,255,255,.35);color:var(--soft);cursor:pointer;transition:all .2s ease;touch-action:manipulation;-webkit-appearance:none}
+.cint-btn.active{background:linear-gradient(135deg,var(--dusty),var(--mauve));color:#fff;border-color:transparent;box-shadow:0 3px 14px rgba(168,94,122,.3)}
+.command-progress{display:flex;gap:5px;justify-content:center;margin-bottom:1rem}
+.cmd-dot{width:7px;height:7px;border-radius:50%;background:rgba(212,132,154,.25);transition:all .3s ease}
+.cmd-dot.done{background:var(--mauve)}
+.cmd-dot.current{background:var(--gold);box-shadow:0 0 6px rgba(201,160,90,.6)}
+
+/* ═══════ TOUCH ME (stub kept for CSS compatibility) ═══════ */
+.touchme-section{display:none}
+.his-desires-section{padding:0}
+.his-desires-container{padding:1.8rem 1.4rem}
+.his-desire-card{
+  position:relative;padding:1.1rem 1.3rem;margin-bottom:.85rem;
+  border-radius:16px;overflow:hidden;cursor:pointer;
+  border:1px solid rgba(235,181,194,.3);
+  background:rgba(255,255,255,.38);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  transition:all .25s cubic-bezier(.34,1.4,.64,1);
+  display:flex;gap:1rem;align-items:flex-start;
+}
+.his-desire-card:active{transform:scale(.98)}
+.his-desire-card.revealed{
+  background:rgba(168,94,122,.08);
+  border-color:rgba(168,94,122,.35);
+}
+.hdc-emoji{font-size:1.8rem;flex-shrink:0;margin-top:.1rem}
+.hdc-body{flex:1}
+.hdc-title{font-family:'Playfair Display',serif;font-size:clamp(.9rem,3.5vw,1.08rem);font-style:italic;color:var(--deep);margin-bottom:.3rem}
+.hdc-detail{font-family:'Cormorant Garamond',serif;font-size:clamp(.82rem,3.2vw,.95rem);font-style:italic;color:var(--soft);line-height:1.7;max-height:0;overflow:hidden;transition:max-height .5s ease,opacity .4s ease;opacity:0}
+.his-desire-card.revealed .hdc-detail{max-height:200px;opacity:1}
+.hdc-tap{font-family:'Tenor Sans',sans-serif;font-size:.62rem;color:var(--rose);letter-spacing:.15em;text-transform:uppercase;margin-top:.4rem;transition:opacity .3s}
+.his-desire-card.revealed .hdc-tap{opacity:0}
+
+/* ═══════ TENDER WHISPERS ═══════ */
+.tender-section{padding:0}
+.tender-container{padding:1.8rem 1.4rem;text-align:center}
+.tender-display{
+  min-height:100px;padding:1.6rem 1.4rem;margin-bottom:1.2rem;
+  display:flex;align-items:center;justify-content:center;
+}
+.tender-text{
+  font-family:'Playfair Display',serif;font-size:clamp(1rem,4.2vw,1.4rem);
+  font-style:italic;color:var(--dark);line-height:1.7;
+  opacity:0;transform:translateY(6px);transition:opacity .4s ease,transform .4s ease;
+  text-align:center;
+}
+.tender-text.show{opacity:1;transform:translateY(0)}
+.tender-text em{color:var(--mauve)}
+
+/* ═══════ DESIRE SURVEY ═══════ */
+.desire-section{padding:0}
+.desire-container{padding:1.8rem 1.4rem;text-align:center}
+.desire-title{font-family:'Playfair Display',serif;font-size:clamp(1.1rem,4.5vw,1.5rem);font-style:italic;color:var(--deep);margin-bottom:.5rem}
+.desire-subtitle{font-family:'Cormorant Garamond',serif;font-size:clamp(.88rem,3.5vw,1.02rem);font-style:italic;color:var(--soft);margin-bottom:1.4rem;line-height:1.7}
+.desire-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.2rem}
+@media(max-width:400px){.desire-grid{grid-template-columns:1fr}}
+.desire-item{
+  display:flex;align-items:center;gap:.6rem;
+  padding:.85rem 1rem;border-radius:14px;cursor:pointer;
+  border:1.5px solid rgba(235,181,194,.35);
+  background:rgba(255,255,255,.38);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  transition:all .22s cubic-bezier(.34,1.56,.64,1);
+  text-align:left;font-family:'Cormorant Garamond',serif;
+  font-size:clamp(.85rem,3.2vw,.98rem);font-style:italic;color:var(--soft);
+  -webkit-appearance:none;touch-action:manipulation;user-select:none;
+}
+.desire-item.selected{
+  border-color:var(--mauve);background:rgba(168,94,122,.12);color:var(--deep);
+  box-shadow:0 4px 18px rgba(168,94,122,.2);transform:scale(1.03);
+}
+.desire-item-emoji{font-size:1.35rem;flex-shrink:0}
+.desire-result{
+  font-family:'Playfair Display',serif;font-size:clamp(.9rem,3.5vw,1.1rem);
+  font-style:italic;color:var(--mauve);line-height:1.7;
+  min-height:1.4rem;margin-top:.4rem;
+  opacity:0;transition:opacity .5s ease;
+}
+.desire-result.show{opacity:1}
+
+/* ═══════ FANTASY CARDS ═══════ */
+.fantasy-section{padding:0}
+.fantasy-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:380px){.fantasy-grid{grid-template-columns:1fr}}
+.fcard{
+  perspective:700px;cursor:pointer;
+  min-height:130px;touch-action:manipulation;
+}
+.fcard-inner{
+  position:relative;width:100%;height:100%;min-height:130px;
+  transform-style:preserve-3d;
+  transition:transform .6s cubic-bezier(.34,1.2,.64,1);
+}
+.fcard.flipped .fcard-inner{transform:rotateY(180deg)}
+.fcard-front,.fcard-back{
+  position:absolute;inset:0;border-radius:16px;
+  -webkit-backface-visibility:hidden;backface-visibility:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:1rem .8rem;text-align:center;
+}
+.fcard-front{
+  background:linear-gradient(135deg,var(--dusty),var(--mauve));
+  box-shadow:0 4px 20px rgba(168,94,122,.25);
+}
+.fcard-front-emoji{font-size:2rem;margin-bottom:.4rem}
+.fcard-front-hint{font-family:'Cormorant Garamond',serif;font-size:.8rem;font-style:italic;color:rgba(255,255,255,.8);letter-spacing:.15em}
+.fcard-back{
+  transform:rotateY(180deg);
+  background:rgba(255,255,255,.72);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border:1.5px solid rgba(235,181,194,.55);
+  box-shadow:0 4px 22px rgba(168,94,122,.15);
+}
+.fcard-back-emoji{font-size:1.5rem;margin-bottom:.4rem}
+.fcard-back-text{font-family:'Cormorant Garamond',serif;font-size:clamp(.8rem,3vw,.92rem);font-style:italic;color:var(--deep);line-height:1.65}
+
+/* ═══════ PLEASURE WHEEL ═══════ */
+.pleasure-section{padding:0}
+.pleasure-container{padding:1.8rem 1.4rem;text-align:center}
+
+/* ═══════ FEELINGS SECTION ═══════ */
+.feelings-section{padding:0}
+.feelings-container{padding:2rem 1.4rem 1.8rem}
+.feelings-header{text-align:center;margin-bottom:2rem}
+.feelings-main-title{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,6vw,2.2rem);font-style:italic;color:var(--deep);line-height:1.3;margin-bottom:.7rem}
+.feelings-main-title em{color:var(--mauve)}
+.feelings-intro{font-family:'Cormorant Garamond',serif;font-size:clamp(.95rem,3.8vw,1.1rem);font-style:italic;color:var(--soft);line-height:1.9;max-width:480px;margin:0 auto}
+.feelings-blocks{display:flex;flex-direction:column;gap:.9rem}
+.feelings-block{
+  padding:1.4rem 1.5rem 1.4rem 1.4rem;
+  border-left:3px solid var(--rose);
+  background:rgba(255,255,255,.38);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border-radius:0 16px 16px 0;
+  border-top:1px solid rgba(255,255,255,.72);
+  border-right:1px solid rgba(255,255,255,.72);
+  border-bottom:1px solid rgba(255,255,255,.5);
+  opacity:0;transform:translateX(-18px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+.feelings-block.visible{opacity:1;transform:translateX(0)}
+.feelings-block:nth-child(1){border-left-color:var(--rose)}
+.feelings-block:nth-child(2){border-left-color:var(--mauve);transition-delay:.1s}
+.feelings-block:nth-child(3){border-left-color:var(--gold);transition-delay:.18s}
+.feelings-block:nth-child(4){border-left-color:var(--deep);transition-delay:.26s}
+.feelings-block:nth-child(5){border-left-color:var(--dusty);transition-delay:.34s}
+.feelings-block:nth-child(6){border-left-color:var(--rose);transition-delay:.42s}
+.feelings-block:nth-child(7){border-left-color:var(--mauve);transition-delay:.5s}
+.fb-label{font-family:'Tenor Sans',sans-serif;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--dusty);margin-bottom:.6rem;display:block}
+.fb-text{font-family:'Cormorant Garamond',serif;font-size:clamp(.95rem,3.8vw,1.12rem);font-style:italic;color:var(--soft);line-height:1.95}
+.fb-text em{color:var(--mauve)}
+.fb-text strong{font-family:'Playfair Display',serif;color:var(--deep);font-weight:400;font-style:italic}
+.feelings-closing{
+  text-align:center;margin-top:1.6rem;
+  padding:1.8rem 1.4rem;
+  background:linear-gradient(135deg,rgba(235,181,194,.15),rgba(168,94,122,.08));
+  border-radius:20px;border:1px solid rgba(235,181,194,.35);
+}
+.feelings-closing-text{font-family:'Playfair Display',serif;font-size:clamp(1.15rem,4.8vw,1.6rem);font-style:italic;color:var(--deep);line-height:1.6}
+.feelings-closing-text em{color:var(--mauve)}
+.feelings-sig{font-family:'Cormorant Garamond',serif;font-size:clamp(.88rem,3.5vw,1rem);font-style:italic;color:var(--soft);margin-top:.8rem;letter-spacing:.08em}
+
+/* ═══════ GLASS UTIL ═══════ */
+.glass{
+  background:rgba(255,255,255,.48);
+  -webkit-backdrop-filter:blur(16px) saturate(180%);
+  backdrop-filter:blur(16px) saturate(180%);
+  border:1px solid rgba(255,255,255,.78);
+  border-radius:20px;
+  box-shadow:0 4px 28px rgba(168,94,122,.08),inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+/* ═══════ INTRO ═══════ */
+#intro-screen{
+  position:fixed;inset:0;z-index:2000;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:linear-gradient(160deg,#fdf7f4 0%,#f8edf5 55%,#fceef3 100%);
+  padding:20px 24px calc(var(--safe-bot) + 20px);
+  transition:opacity 1.4s cubic-bezier(.4,0,.2,1),visibility 1.4s ease;
+}
+#intro-screen.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.intro-eyebrow{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(.75rem,3.5vw,.9rem);
+  font-style:italic;letter-spacing:.4em;text-transform:uppercase;color:var(--soft);
+  margin-bottom:1.4rem;opacity:0;animation:riseIn 1.2s .3s forwards;text-align:center;
+}
+.intro-title{
+  font-family:'Playfair Display',serif;font-size:clamp(2.6rem,11vw,5rem);
+  font-weight:400;line-height:1.1;text-align:center;color:var(--dark);
+  margin-bottom:.8rem;opacity:0;animation:riseIn 1.2s .6s forwards;
+}
+.intro-title em{color:var(--mauve);font-style:italic}
+.intro-date{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(.95rem,4vw,1.3rem);
+  font-style:italic;color:var(--dusty);margin-bottom:2.5rem;text-align:center;
+  opacity:0;animation:riseIn 1.2s .9s forwards;
+}
+/* BLOOM BTN */
+.bloom-btn{
+  position:relative;width:120px;height:120px;border:none;background:none;
+  cursor:pointer;opacity:0;animation:riseIn 1.2s 1.2s forwards;
+  -webkit-appearance:none;touch-action:manipulation;
+}
+.bloom-core{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:48px;height:48px;
+  background:radial-gradient(circle at 40% 35%,var(--gold-lt),var(--gold));
+  border-radius:50%;z-index:10;
+  box-shadow:0 0 22px rgba(201,160,90,.55);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:.5rem;font-style:italic;
+  color:#fff;text-align:center;line-height:1.4;
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.bloom-btn:active .bloom-core{transform:translate(-50%,-50%) scale(1.1);box-shadow:0 0 38px rgba(201,160,90,.8)}
+.petal{
+  position:absolute;top:50%;left:50%;width:24px;height:46px;
+  border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
+  transform-origin:bottom center;
+  animation:petalPulse 3.5s ease-in-out infinite alternate;
+}
+@keyframes petalPulse{
+  from{transform:translateX(-50%) translateY(-100%) scaleX(.82) scaleY(.88)}
+  to{transform:translateX(-50%) translateY(-100%) scaleX(1.12) scaleY(1.1)}
+}
+.p1{background:linear-gradient(180deg,#f7dde4,#ebb5c2);transform:translateX(-50%) translateY(-100%) rotate(0deg);animation-delay:.0s}
+.p2{background:linear-gradient(180deg,#e4d8f0,#c8b2e0);transform:translateX(-50%) translateY(-100%) rotate(45deg);animation-delay:.35s}
+.p3{background:linear-gradient(180deg,#f7dde4,#d4849a);transform:translateX(-50%) translateY(-100%) rotate(90deg);animation-delay:.7s}
+.p4{background:linear-gradient(180deg,#ead9b0,#c9a05a);transform:translateX(-50%) translateY(-100%) rotate(135deg);animation-delay:1.05s}
+.p5{background:linear-gradient(180deg,#f7dde4,#ebb5c2);transform:translateX(-50%) translateY(-100%) rotate(180deg);animation-delay:1.4s}
+.p6{background:linear-gradient(180deg,#e4d8f0,#c8b2e0);transform:translateX(-50%) translateY(-100%) rotate(225deg);animation-delay:1.75s}
+.p7{background:linear-gradient(180deg,#f7dde4,#d4849a);transform:translateX(-50%) translateY(-100%) rotate(270deg);animation-delay:2.1s}
+.p8{background:linear-gradient(180deg,#ead9b0,#c9a05a);transform:translateX(-50%) translateY(-100%) rotate(315deg);animation-delay:2.45s}
+.bloom-hint{
+  margin-top:1.4rem;font-family:'Cormorant Garamond',serif;font-size:.85rem;
+  font-style:italic;color:var(--soft);letter-spacing:.2em;
+  opacity:0;animation:riseIn 1.2s 1.6s forwards;text-align:center;
+}
+
+/* ═══════ MAIN CONTENT ═══════ */
+.main-content{
+  padding:50px 16px 80px;
+  max-width:640px;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left));
+  padding-right:max(16px,env(safe-area-inset-right));
+}
+
+/* DIVIDER */
+.divider{display:flex;align-items:center;gap:1rem;margin:3.5rem auto;max-width:260px}
+.div-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--rose),transparent)}
+.div-gem{width:9px;height:9px;background:var(--gold);transform:rotate(45deg);flex-shrink:0;box-shadow:0 0 8px rgba(201,160,90,.5)}
+
+/* SECTION LABEL */
+.section-label{
+  font-family:'Cormorant Garamond',serif;font-size:.82rem;font-style:italic;
+  color:var(--mauve);letter-spacing:.4em;text-transform:uppercase;
+  text-align:center;margin-bottom:1.4rem;
+  opacity:0;transform:translateY(12px);transition:all .8s ease;
+}
+.section-label.visible{opacity:1;transform:translateY(0)}
+
+/* HERO */
+.march-hero{text-align:center;padding:70px 0 40px}
+.march-badge{
+  display:inline-block;font-family:'Cormorant Garamond',serif;
+  font-size:clamp(.72rem,3vw,.88rem);font-style:italic;letter-spacing:.35em;
+  text-transform:uppercase;color:var(--mauve);
+  border:1px solid rgba(168,94,122,.28);border-radius:100px;
+  padding:.5em 1.8em;margin-bottom:2rem;background:rgba(247,221,228,.3);
+  opacity:0;transform:translateY(16px);transition:all .9s ease;
+}
+.march-badge.visible{opacity:1;transform:translateY(0)}
+.march-number{
+  font-family:'Playfair Display',serif;font-size:clamp(5rem,26vw,12rem);
+  font-weight:600;line-height:.85;color:transparent;
+  background:linear-gradient(135deg,var(--blush) 0%,var(--rose) 35%,var(--dusty) 60%,var(--mauve) 100%);
+  -webkit-background-clip:text;background-clip:text;
+  display:block;margin-bottom:.5rem;
+  opacity:0;transform:translateY(36px) scale(.92);transition:all 1.2s cubic-bezier(.22,1,.36,1);
+}
+.march-number.visible{opacity:1;transform:translateY(0) scale(1)}
+.march-word{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,5vw,2.2rem);
+  font-style:italic;color:var(--soft);letter-spacing:.28em;text-transform:uppercase;
+  margin-bottom:2rem;opacity:0;transform:translateY(18px);transition:all 1s .3s ease;
+}
+.march-word.visible{opacity:1;transform:translateY(0)}
+.march-tagline{
+  font-family:'Playfair Display',serif;font-size:clamp(1.05rem,4.5vw,1.55rem);
+  line-height:1.65;color:var(--dark);max-width:100%;margin:0 auto;
+  opacity:0;transform:translateY(18px);transition:all 1s .5s ease;
+}
+.march-tagline.visible{opacity:1;transform:translateY(0)}
+.march-tagline em{color:var(--mauve);font-style:italic}
+
+/* DECLARATIONS */
+.declarations{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:480px){.declarations{grid-template-columns:1fr;gap:12px}}
+.decl-card{
+  position:relative;overflow:hidden;padding:1.6rem 1.4rem;
+  opacity:0;transform:translateY(24px) scale(.97);transition:opacity .7s ease,transform .7s ease;
+}
+.decl-card::before{content:'';position:absolute;top:-24px;right:-24px;width:70px;height:70px;border-radius:50%;background:radial-gradient(circle,rgba(235,181,194,.18),transparent 70%)}
+.decl-card.visible{opacity:1;transform:translateY(0) scale(1)}
+.decl-card:nth-child(2){transition-delay:.1s}.decl-card:nth-child(3){transition-delay:.2s}.decl-card:nth-child(4){transition-delay:.3s}
+.decl-emoji{font-size:1.8rem;margin-bottom:.7rem;display:block;animation:emojiPop 3.2s ease-in-out infinite}
+@keyframes emojiPop{0%,100%{transform:scale(1) rotate(0deg)}25%{transform:scale(1.18) rotate(-5deg)}75%{transform:scale(1.1) rotate(4deg)}}
+.decl-card:nth-child(2) .decl-emoji{animation-delay:.5s}.decl-card:nth-child(3) .decl-emoji{animation-delay:1s}.decl-card:nth-child(4) .decl-emoji{animation-delay:1.5s}
+.decl-title{font-family:'Playfair Display',serif;font-size:clamp(.92rem,3.5vw,1.12rem);font-style:italic;color:var(--deep);margin-bottom:.5rem}
+.decl-body{font-family:'Cormorant Garamond',serif;font-size:clamp(.9rem,3.5vw,1.02rem);font-weight:300;font-style:italic;color:var(--soft);line-height:1.8}
+
+/* ACTION BUTTON */
+.action-btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;
+  color:#fff;background:linear-gradient(135deg,var(--dusty),var(--mauve));
+  border:none;border-radius:100px;padding:.9em 2.2em;cursor:pointer;
+  box-shadow:0 6px 24px rgba(168,94,122,.3);
+  transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s ease;
+  -webkit-appearance:none;touch-action:manipulation;min-height:48px;
+}
+.action-btn:active{transform:scale(.95);box-shadow:0 3px 12px rgba(168,94,122,.25)}
+
+/* REASON MACHINE */
+.rm-wrap{text-align:center;opacity:0;transform:translateY(22px);transition:all .9s ease}
+.rm-wrap.visible{opacity:1;transform:translateY(0)}
+.rm-box{padding:2rem 1.6rem;margin-bottom:1.4rem;min-height:120px;display:flex;align-items:center;justify-content:center}
+.rm-text{font-family:'Playfair Display',serif;font-size:clamp(1rem,4vw,1.4rem);font-style:italic;color:var(--dark);line-height:1.65;transition:opacity .28s ease,transform .28s ease}
+.rm-text em{color:var(--mauve)}
+.rm-counter{font-family:'Tenor Sans',sans-serif;font-size:.7rem;color:var(--soft);opacity:.55;margin-top:.9rem;letter-spacing:.18em}
+
+/* WORD REVEAL */
+.msg-main{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,7vw,3.2rem);font-weight:400;color:var(--dark);line-height:1.25;max-width:100%;margin:0 auto 1.6rem;text-align:center}
+.mw{display:inline-block;opacity:0;transform:translateY(22px);transition:opacity .5s ease,transform .5s ease;margin-right:.18em}
+.mw.visible{opacity:1;transform:translateY(0)}
+.mw em{color:var(--mauve);font-style:italic}
+.msg-body{font-family:'Cormorant Garamond',serif;font-size:clamp(.95rem,3.5vw,1.15rem);font-style:italic;font-weight:300;color:var(--soft);line-height:2;max-width:100%;margin:0 auto;text-align:center;opacity:0;transform:translateY(16px);transition:all .9s .35s ease}
+.msg-body.visible{opacity:1;transform:translateY(0)}
+
+/* ═══════ LOVE SCALE ═══════ */
+.scale-wrap{text-align:center;opacity:0;transform:translateY(22px);transition:all .9s ease}
+.scale-wrap.visible{opacity:1;transform:translateY(0)}
+.scale-canvas-wrap{margin:0 auto 1.4rem;width:min(320px,90vw)}
+#scaleCanvas{width:100%;height:auto;display:block;border-radius:14px}
+.scale-q{font-family:'Playfair Display',serif;font-size:clamp(.95rem,4vw,1.22rem);font-style:italic;color:var(--dark);margin-bottom:1rem;line-height:1.5}
+.scale-answer{font-family:'Cormorant Garamond',serif;font-size:clamp(.95rem,3.5vw,1.1rem);font-style:italic;color:var(--mauve);min-height:1.6rem;margin-top:.7rem;opacity:0;transition:opacity .5s ease}
+.scale-answer.show{opacity:1}
+
+/* ═══════ BATTLE GAME ═══════ */
+.battle-wrap{text-align:center;opacity:0;transform:translateY(22px);transition:all .9s ease}
+.battle-wrap.visible{opacity:1;transform:translateY(0)}
+.battle-q{font-family:'Playfair Display',serif;font-size:clamp(1rem,4.5vw,1.4rem);font-style:italic;color:var(--dark);margin-bottom:1.4rem;line-height:1.5}
+.battle-q em{color:var(--mauve)}
+.battle-options{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:.8rem}
+.bopt{
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  width:clamp(110px,40vw,140px);padding:1.2rem .8rem;
+  border-radius:18px;cursor:pointer;
+  border:1.5px solid rgba(235,181,194,.4);
+  background:rgba(255,255,255,.42);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  transition:all .25s cubic-bezier(.34,1.56,.64,1);
+  -webkit-appearance:none;touch-action:manipulation;min-height:90px;
+}
+.bopt:active{transform:translateY(-3px) scale(1.04);border-color:var(--rose);box-shadow:0 8px 28px rgba(168,94,122,.2)}
+.bopt-emoji{font-size:2rem;animation:emojiPop 2.5s ease-in-out infinite}
+.bopt:nth-child(2) .bopt-emoji{animation-delay:.4s}
+.bopt-label{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.85rem;color:var(--soft);text-align:center;line-height:1.3}
+.battle-result{font-family:'Playfair Display',serif;font-size:clamp(.95rem,4vw,1.28rem);font-style:italic;color:var(--dark);min-height:1.6rem;margin-top:.7rem;opacity:0;transform:translateY(8px);transition:all .5s ease;line-height:1.6;padding:0 .5rem}
+.battle-result.show{opacity:1;transform:translateY(0)}
+.battle-result em{color:var(--mauve)}
+.battle-next{margin-top:1rem;display:none}
+
+/* ═══════ QUIZ ═══════ */
+.quiz-wrap{opacity:0;transform:translateY(22px);transition:all .9s ease}
+.quiz-wrap.visible{opacity:1;transform:translateY(0)}
+.quiz-card{padding:1.8rem 1.4rem 1.4rem}
+.quiz-q{font-family:'Playfair Display',serif;font-size:clamp(.95rem,4vw,1.2rem);font-style:italic;color:var(--dark);margin-bottom:1.2rem;line-height:1.5}
+.quiz-q span{font-size:.82em;color:var(--mauve);margin-right:.35rem}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:.9rem}
+@media(max-width:380px){.quiz-options{grid-template-columns:1fr}}
+.qopt{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(.85rem,3.5vw,.98rem);
+  font-style:italic;color:var(--soft);
+  background:rgba(247,221,228,.22);border:1px solid rgba(235,181,194,.4);
+  border-radius:12px;padding:.8em 1rem;cursor:pointer;
+  transition:all .2s ease;text-align:left;line-height:1.35;
+  -webkit-appearance:none;touch-action:manipulation;min-height:44px;
+}
+.qopt:active{background:rgba(247,221,228,.55);border-color:var(--rose);color:var(--deep)}
+.qopt.correct{background:rgba(200,240,215,.6);border-color:#70b88a;color:#2a6040;animation:correctPop .4s cubic-bezier(.34,1.56,.64,1)}
+.qopt.wrong{background:rgba(255,210,210,.5);border-color:#e08080;color:#7a2020;animation:shake .4s ease}
+@keyframes correctPop{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.quiz-feedback{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:var(--mauve);text-align:center;min-height:1.4rem;line-height:1.5;margin-bottom:.4rem}
+.quiz-progress{display:flex;gap:6px;justify-content:center;margin-bottom:1.2rem}
+.qp-dot{width:9px;height:9px;border-radius:50%;background:rgba(212,132,154,.25);transition:all .3s ease;flex-shrink:0}
+.qp-dot.done{background:var(--dusty)}.qp-dot.current{background:var(--mauve);transform:scale(1.3)}
+.quiz-result{display:none;text-align:center;padding:.8rem 0}
+.quiz-result h3{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,5vw,1.8rem);font-style:italic;color:var(--deep);margin-bottom:.8rem;line-height:1.3}
+.quiz-result p{font-family:'Cormorant Garamond',serif;font-size:clamp(.92rem,3.5vw,1rem);font-style:italic;color:var(--soft);line-height:1.8}
+
+/* ═══════ SPIN THE BOTTLE ═══════ */
+.spin-section{
+  text-align:center;
+  opacity:0;transform:translateY(22px);transition:all .9s ease;
+}
+.spin-section.visible{opacity:1;transform:translateY(0)}
+.spin-container{
+  padding:2rem 1.4rem 1.8rem;
+  position:relative;
+}
+.spin-title{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,5vw,1.7rem);font-style:italic;color:var(--dark);margin-bottom:.5rem}
+.spin-subtitle{font-family:'Cormorant Garamond',serif;font-size:clamp(.88rem,3.5vw,1rem);font-style:italic;color:var(--soft);margin-bottom:1.8rem;line-height:1.5}
+.spin-wheel-wrap{
+  position:relative;width:min(280px,76vw);height:min(280px,76vw);
+  margin:0 auto 1.6rem;
+}
+#spinCanvas{
+  width:100%;height:100%;display:block;
+  border-radius:50%;
+  box-shadow:0 8px 40px rgba(168,94,122,.25),0 0 0 6px rgba(255,255,255,.7),0 0 0 8px rgba(235,181,194,.3);
+  touch-action:none;
+}
+.spin-pointer{
+  position:absolute;top:-18px;left:50%;transform:translateX(-50%);
+  font-size:2.2rem;animation:pointerBob 2s ease-in-out infinite;
+  filter:drop-shadow(0 2px 6px rgba(168,94,122,.4));
+  pointer-events:none;
+}
+@keyframes pointerBob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-4px)}}
+.spin-btn{
+  display:inline-flex;align-items:center;gap:.7rem;
+  font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;
+  color:#fff;
+  background:linear-gradient(135deg,#e8a0b0,var(--mauve));
+  border:none;border-radius:100px;padding:.9em 2.4em;cursor:pointer;
+  box-shadow:0 6px 28px rgba(168,94,122,.35);
+  transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s ease;
+  -webkit-appearance:none;touch-action:manipulation;min-height:52px;
+}
+.spin-btn:active{transform:scale(.95)}
+.spin-btn:disabled{opacity:.5;transform:none}
+.spin-result-wrap{
+  margin-top:1.4rem;
+  min-height:100px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.spin-result-emoji{font-size:3rem;display:none;animation:resultPop .6s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes resultPop{from{transform:scale(0) rotate(-20deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+.spin-result-text{
+  font-family:'Playfair Display',serif;font-size:clamp(1.1rem,5vw,1.5rem);
+  font-style:italic;color:var(--dark);margin-top:.6rem;line-height:1.4;
+  display:none;animation:riseIn .6s .2s both;
+}
+.spin-result-sub{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(.88rem,3.5vw,1rem);
+  font-style:italic;color:var(--soft);margin-top:.4rem;line-height:1.6;
+  display:none;animation:riseIn .6s .4s both;
+}
+.spin-result-text em,.spin-result-sub em{color:var(--mauve)}
+
+/* ═══════ SCRATCH CARD ═══════ */
+.scratch-outer{text-align:center;opacity:0;transform:translateY(22px);transition:all .9s ease}
+.scratch-outer.visible{opacity:1;transform:translateY(0)}
+.scratch-stack{
+  position:relative;display:inline-block;
+  border-radius:18px;overflow:hidden;
+  box-shadow:0 8px 36px rgba(168,94,122,.22);
+  max-width:min(320px,88vw);
+  /* explicit size set by JS */
+}
+#scratchBg{
+  display:block;border-radius:18px;
+  /* text layer — always shown below */
+}
+#scratchTop{
+  position:absolute;top:0;left:0;
+  display:block;touch-action:none;border-radius:18px;
+  cursor:crosshair;
+  /* cover layer — scratched away */
+}
+.scratch-hint{margin-top:.9rem;font-family:'Cormorant Garamond',serif;font-size:.85rem;font-style:italic;color:var(--soft);opacity:0;transition:opacity .8s ease}
+.scratch-hint.show{opacity:.7}
+
+/* ═══════ MEMORY JAR ═══════ */
+.jar-section{text-align:center;opacity:0;transform:translateY(22px);transition:all .9s ease}
+.jar-section.visible{opacity:1;transform:translateY(0)}
+.jar-container{padding:2rem 1.4rem 1.8rem}
+.jar-title{font-family:'Playfair Display',serif;font-size:clamp(1.15rem,4.5vw,1.65rem);font-style:italic;color:var(--dark);margin-bottom:.4rem}
+.jar-subtitle{font-family:'Cormorant Garamond',serif;font-size:clamp(.85rem,3.5vw,.98rem);font-style:italic;color:var(--soft);margin-bottom:1.6rem;line-height:1.5}
+.jar-svg-wrap{
+  margin:0 auto 1.6rem;
+  width:clamp(110px,28vw,140px);cursor:pointer;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  animation:jarWobble 3s ease-in-out infinite;
+  filter:drop-shadow(0 6px 18px rgba(168,94,122,.2));
+}
+@keyframes jarWobble{0%,100%{transform:rotate(0deg) scale(1)}20%{transform:rotate(-4deg) scale(1.04)}50%{transform:rotate(3deg) scale(1.02)}75%{transform:rotate(-2deg) scale(1.03)}}
+.jar-svg-wrap:active{transform:scale(.93)!important;transition:transform .15s}
+.jar-note{
+  min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:1.2rem 1rem;margin-bottom:1rem;
+  opacity:0;transform:translateY(14px) scale(.96);
+  transition:opacity .55s ease,transform .55s cubic-bezier(.34,1.56,.64,1);
+}
+.jar-note.show{opacity:1;transform:translateY(0) scale(1)}
+.jar-note-inner{
+  background:rgba(255,255,255,.72);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.8);
+  border-radius:12px 12px 12px 2px;
+  padding:1.2rem 1.4rem;
+  box-shadow:0 4px 20px rgba(168,94,122,.1),inset 0 1px 0 rgba(255,255,255,.9);
+  position:relative;max-width:360px;
+}
+.jar-note-inner::before{
+  content:'';position:absolute;bottom:-8px;left:16px;
+  width:16px;height:16px;
+  background:rgba(255,255,255,.72);
+  border-right:1px solid rgba(255,255,255,.8);border-bottom:1px solid rgba(255,255,255,.8);
+  transform:rotate(45deg);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+}
+.jar-note-emoji{font-size:1.6rem;margin-bottom:.5rem;display:block}
+.jar-note-text{font-family:'Playfair Display',serif;font-size:clamp(.92rem,3.8vw,1.1rem);font-style:italic;color:var(--dark);line-height:1.7}
+.jar-note-text em{color:var(--mauve)}
+.jar-count{font-family:'Tenor Sans',sans-serif;font-size:.7rem;color:var(--soft);opacity:.5;letter-spacing:.18em;margin-top:.6rem}
+
+/* ═══════ ENVELOPE LETTER ═══════ */
+.letter-wrap{opacity:0;transform:translateY(22px);transition:all 1s ease}
+.letter-wrap.visible{opacity:1;transform:translateY(0)}
+.letter-envelope{max-width:min(440px,100%);margin:0 auto;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.envelope-body{
+  background:linear-gradient(145deg,#fceef3,#f4ecf8);
+  border:1px solid rgba(235,181,194,.5);border-radius:4px 4px 16px 16px;
+  overflow:hidden;
+  box-shadow:0 8px 36px rgba(168,94,122,.14);transition:all .4s ease;
+}
+.envelope-flap{
+  width:100%;padding-top:42%;
+  background:linear-gradient(135deg,#f7dde4,#e4d8f0);
+  clip-path:polygon(0 0,50% 100%,100% 0);
+  transform-origin:top center;
+  transition:transform .65s cubic-bezier(.4,0,.2,1);
+}
+.envelope-body.open .envelope-flap{transform:rotateX(-180deg)}
+.envelope-inner{padding:2rem 1.6rem;opacity:0;transform:translateY(10px);transition:all .6s .3s ease}
+.envelope-body.open .envelope-inner{opacity:1;transform:translateY(0)}
+.letter-text{font-family:'Cormorant Garamond',serif;font-size:clamp(.95rem,3.5vw,1.12rem);font-style:italic;color:var(--soft);line-height:2;margin-bottom:1rem}
+.letter-text strong{font-family:'Playfair Display',serif;font-weight:400;color:var(--deep);font-style:italic}
+.letter-sign{font-family:'Playfair Display',serif;font-size:clamp(.95rem,4vw,1.25rem);font-style:italic;color:var(--mauve);text-align:right;margin-top:1.2rem}
+.env-tap{text-align:center;padding:.9rem;background:rgba(201,160,90,.1);border-top:1px solid rgba(235,181,194,.3);font-family:'Cormorant Garamond',serif;font-size:.82rem;font-style:italic;color:var(--soft)}
+
+/* ═══════ SHIELD ═══════ */
+.shield-wrap{text-align:center;padding:16px 0;opacity:0;transform:translateY(22px);transition:all 1s ease}
+.shield-wrap.visible{opacity:1;transform:translateY(0)}
+.shield-svg-wrap{margin:0 auto 1.2rem;width:clamp(90px,20vw,120px)}
+.shield-icon{width:100%;animation:shieldFloat 4s ease-in-out infinite}
+@keyframes shieldFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(2deg)}}
+.shield-title{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,5.5vw,2rem);font-style:italic;color:var(--dark);margin-bottom:1rem}
+.shield-title em{color:var(--mauve)}
+.shield-text{font-family:'Cormorant Garamond',serif;font-size:clamp(.95rem,3.8vw,1.12rem);font-style:italic;font-weight:300;color:var(--soft);line-height:2;max-width:100%;margin:0 auto 1.4rem}
+.shield-promises{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:100%;margin:0 auto 1.4rem}
+@media(max-width:400px){.shield-promises{grid-template-columns:1fr}}
+.promise-item{
+  display:flex;align-items:center;gap:.6rem;
+  padding:.9rem 1rem;
+  background:rgba(255,255,255,.4);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.7);border-radius:12px;
+  font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--soft);
+  font-size:clamp(.85rem,3.5vw,.95rem);line-height:1.4;
+  opacity:0;transform:scale(.93);transition:all .5s ease;
+}
+.promise-item.visible{opacity:1;transform:scale(1)}
+.promise-item:nth-child(2){transition-delay:.07s}.promise-item:nth-child(3){transition-delay:.14s}
+.promise-item:nth-child(4){transition-delay:.21s}.promise-item:nth-child(5){transition-delay:.28s}.promise-item:nth-child(6){transition-delay:.35s}
+.promise-icon{font-size:1.1rem;flex-shrink:0}
+
+/* ═══════ LOVE LIST ═══════ */
+.love-list{display:flex;flex-direction:column;gap:0;margin:16px 0}
+.love-item{display:flex;align-items:flex-start;gap:1rem;padding:1.4rem 0;border-bottom:1px solid rgba(235,181,194,.2);opacity:0;transform:translateX(-18px);transition:all .7s ease}
+.love-item:last-child{border-bottom:none}
+.love-item.visible{opacity:1;transform:translateX(0)}
+.love-item:nth-child(2){transition-delay:.09s}.love-item:nth-child(3){transition-delay:.18s}.love-item:nth-child(4){transition-delay:.27s}.love-item:nth-child(5){transition-delay:.36s}
+.love-icon{font-size:1.5rem;flex-shrink:0;animation:heartBeat 2s ease-in-out infinite}
+@keyframes heartBeat{0%,100%{transform:scale(1)}14%{transform:scale(1.22)}28%{transform:scale(1)}42%{transform:scale(1.15)}70%{transform:scale(1)}}
+.love-item:nth-child(2) .love-icon{animation-delay:.3s}.love-item:nth-child(3) .love-icon{animation-delay:.6s}.love-item:nth-child(4) .love-icon{animation-delay:.9s}.love-item:nth-child(5) .love-icon{animation-delay:1.2s}
+.love-text{font-family:'Cormorant Garamond',serif;font-size:clamp(.95rem,3.8vw,1.12rem);font-style:italic;color:var(--soft);line-height:1.85}
+.love-text strong{font-family:'Playfair Display',serif;font-weight:400;color:var(--deep);font-style:italic}
+
+/* ═══════ SIGNATURE ═══════ */
+.sig-section{text-align:center;padding:44px 0 28px;opacity:0;transform:translateY(22px);transition:all 1s ease}
+.sig-section.visible{opacity:1;transform:translateY(0)}
+.sig-from{font-family:'Cormorant Garamond',serif;font-size:clamp(.75rem,3vw,.88rem);font-style:italic;letter-spacing:.4em;text-transform:uppercase;color:var(--soft);opacity:.56;margin-bottom:.9rem}
+.sig-names{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,7vw,3.2rem);font-weight:400;color:var(--dark);line-height:1.2;display:block}
+.name-from{font-style:normal;color:var(--deep)}
+.sig-arrow{display:inline-block;color:var(--rose);font-size:.62em;vertical-align:middle;margin:0 .4em;animation:arrowPulse 2.2s ease-in-out infinite}
+@keyframes arrowPulse{0%,100%{transform:scale(1) translateX(0)}50%{transform:scale(1.35) translateX(3px)}}
+.name-to{font-style:italic;color:var(--mauve)}
+.sig-rose{display:block;font-size:2.4rem;margin:1rem auto 0;animation:roseWave 3s ease-in-out infinite}
+@keyframes roseWave{0%,100%{transform:scale(1) rotate(0deg)}30%{transform:scale(1.2) rotate(-8deg)}60%{transform:scale(1.15) rotate(6deg)}}
+.secret-btn{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-family:'Cormorant Garamond',serif;font-size:.9rem;font-style:italic;
+  color:var(--mauve);background:none;border:1px solid rgba(168,94,122,.3);
+  border-radius:100px;padding:.55em 1.4em;cursor:pointer;
+  transition:all .25s ease;letter-spacing:.07em;margin-top:1.1rem;
+  -webkit-appearance:none;touch-action:manipulation;min-height:44px;
+}
+.secret-btn:active{background:rgba(247,221,228,.4);border-color:var(--dusty)}
+
+/* ═══════ HEART BTN ═══════ */
+.surprise-section{text-align:center;padding:50px 0 60px}
+.surp-hint{font-family:'Cormorant Garamond',serif;font-size:.88rem;font-style:italic;color:var(--soft);letter-spacing:.15em;margin-bottom:1.6rem;opacity:.6}
+.heart-btn{display:inline-flex;flex-direction:column;align-items:center;gap:12px;border:none;background:none;cursor:pointer;padding:8px;-webkit-appearance:none;touch-action:manipulation}
+.heart-icon{width:80px;height:80px;transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.heart-btn:active .heart-icon{transform:scale(.85)}
+.heart-svg{width:100%;height:100%;filter:drop-shadow(0 5px 20px rgba(212,132,154,.5));animation:hPulse 2.2s ease-in-out infinite}
+@keyframes hPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.heart-lbl{font-family:'Cormorant Garamond',serif;font-size:.88rem;font-style:italic;color:var(--mauve);letter-spacing:.18em}
+
+/* ═══════ CONFETTI ═══════ */
+#confetti-canvas{position:fixed;inset:0;z-index:9000;pointer-events:none;opacity:0;transition:opacity .3s ease}
+#confetti-canvas.active{opacity:1}
+.confetti-msg{
+  position:fixed;inset:0;z-index:9001;
+  display:flex;align-items:center;justify-content:center;
+  pointer-events:none;opacity:0;transition:opacity .7s ease;
+  padding:20px;
+}
+.confetti-msg.active{opacity:1;pointer-events:auto}
+.conf-card{
+  background:rgba(255,255,255,.72);
+  -webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);
+  border:1px solid rgba(255,255,255,.88);border-radius:28px;
+  padding:2.5rem 2rem;text-align:center;
+  box-shadow:0 20px 70px rgba(30,18,32,.2);
+  cursor:pointer;max-width:min(460px,92vw);
+  transform:scale(.78) translateY(20px);
+  transition:transform .7s cubic-bezier(.34,1.56,.64,1);
+}
+.confetti-msg.active .conf-card{transform:scale(1) translateY(0)}
+.conf-emoji{font-size:2.8rem;margin-bottom:.9rem;display:block;animation:emojiPop 1.5s ease-in-out infinite}
+.conf-card h2{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,6vw,2.4rem);font-weight:400;font-style:italic;color:var(--dark);margin-bottom:.9rem;line-height:1.25}
+.conf-card h2 em{color:var(--mauve)}
+.conf-card p{font-family:'Cormorant Garamond',serif;font-size:clamp(.95rem,3.8vw,1.08rem);font-style:italic;color:var(--soft);line-height:1.85;margin-bottom:1.2rem}
+.conf-close{font-family:'Tenor Sans',sans-serif;font-size:.7rem;color:var(--mauve);letter-spacing:.2em;text-transform:uppercase;opacity:.6}
+
+/* ═══════ TOAST ═══════ */
+.toast{
+  position:fixed;
+  bottom:calc(var(--safe-bot) + 24px);
+  left:50%;transform:translateX(-50%) translateY(20px);
+  background:rgba(30,18,32,.88);color:#fff;
+  padding:.9em 1.6em;border-radius:100px;
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.98rem;
+  z-index:99990;opacity:0;
+  transition:all .45s cubic-bezier(.34,1.56,.64,1);
+  pointer-events:none;
+  max-width:88vw;text-align:center;line-height:1.4;
+  word-break:break-word;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+footer{
+  text-align:center;padding:30px 20px;
+  padding-bottom:calc(var(--safe-bot) + 30px);
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:.85rem;color:var(--soft);opacity:.5;
+}
+
+@keyframes riseIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="bg-mesh"></div>
+
+<div class="float-layer">
+  <span class="fe">💗</span><span class="fe">🌸</span><span class="fe">💕</span><span class="fe">✨</span>
+  <span class="fe">🌷</span><span class="fe">💝</span><span class="fe">🥰</span><span class="fe">🌹</span>
+  <span class="fe">💞</span><span class="fe">🌺</span><span class="fe">😍</span><span class="fe">💐</span>
+  <span class="fe">💓</span><span class="fe">🌸</span><span class="fe">😘</span><span class="fe">💖</span>
+  <span class="fe">🌷</span><span class="fe">🥹</span>
+</div>
+
+<canvas id="petalCanvas"></canvas>
+
+<!-- INTRO -->
+<div id="intro-screen">
+  <p class="intro-eyebrow">только для тебя</p>
+  <h1 class="intro-title">Кянкс,<br><em>это тебе</em> 🌸</h1>
+  <p class="intro-date">8 Марта — день, созданный для тебя</p>
+  <button class="bloom-btn" id="bloomBtn" aria-label="Открыть" type="button">
+    <div class="petal p1"></div><div class="petal p2"></div><div class="petal p3"></div><div class="petal p4"></div>
+    <div class="petal p5"></div><div class="petal p6"></div><div class="petal p7"></div><div class="petal p8"></div>
+    <div class="bloom-core">Открыть</div>
+  </button>
+  <p class="bloom-hint">— прикоснись к цветку —</p>
+</div>
+
+<!-- CONFETTI -->
+<canvas id="confetti-canvas"></canvas>
+<div class="confetti-msg" id="confettiMsg">
+  <div class="conf-card" id="confCard">
+    <span class="conf-emoji">💖</span>
+    <h2>Ты любима,<br><em>бесконечно.</em></h2>
+    <p>Кянкс, каждый день рядом с тобой — это подарок. Ты — мой дом. Спасибо, что ты есть. С 8 Марта! 🌸</p>
+    <p class="conf-close">— нажми, чтобы закрыть —</p>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<!-- MAIN CONTENT -->
+<div class="page-wrapper">
+<div class="main-content">
+
+  <!-- HERO -->
+  <section class="march-hero">
+    <div class="march-badge observe">Международный женский день</div>
+    <span class="march-number observe">8</span>
+    <p class="march-word observe">М а р т а</p>
+    <p class="march-tagline observe">Сегодня весь мир расцветает — но ярче всего цветёшь <em>ты,</em> моя Анюта 🌷</p>
+  </section>
+
+  <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-line"></div></div>
+
+  <!-- DECLARATIONS -->
+  <p class="section-label observe">четыре правды о тебе</p>
+  <div class="declarations">
+    <div class="decl-card glass observe">
+      <span class="decl-emoji">🌸</span>
+      <p class="decl-title">Ты — моя весна</p>
+      <p class="decl-body">Когда ты рядом, внутри расцветает что-то тёплое — как первый день марта, когда солнце касается кожи.</p>
+    </div>
+    <div class="decl-card glass observe">
+      <span class="decl-emoji">💫</span>
+      <p class="decl-title">Твой смех — музыка</p>
+      <p class="decl-body">Я говорю глупости специально, лишь бы снова услышать, как ты смеёшься. Это самый красивый звук.</p>
+    </div>
+    <div class="decl-card glass observe">
+      <span class="decl-emoji">🥰</span>
+      <p class="decl-title">Ты делаешь меня лучше</p>
+      <p class="decl-body">Рядом с тобой я хочу быть добрее, смелее, внимательнее. Ты меняешь то, как я смотрю на мир.</p>
+    </div>
+    <div class="decl-card glass observe">
+      <span class="decl-emoji">✨</span>
+      <p class="decl-title">В каждой мелочи — ты</p>
+      <p class="decl-body">Утренний кофе, случайная песня, запах весны — всё напоминает о тебе. Ты часть каждого дня.</p>
+    </div>
+  </div>
+
+  <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-line"></div></div>
+
+  <!-- REASON MACHINE -->
+  <p class="section-label observe">генератор любви 💗</p>
+  <section class="rm-wrap observe">
+    <div class="rm-box glass">
+      <p class="rm-text" id="rmText">Нажми — и узнай одну из причин,<br>почему я тебя люблю 💗</p>
+    </div>
+    <button class="action-btn" id="rmBtn" type="button">✨ Ещё одна причина</button>
+    <p class="rm-counter" id="rmCounter"></p>
+  </section>
+
+  <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-line"></div></div>
+
+  <!-- LOVE SCALE -->
+  <p class="section-label observe">насколько я тебя люблю?</p>
+  <section class="scale-wrap observe">
+    <p class="scale-q">Нажми кнопку и взвесь мою любовь 😄</p>
+    <div class="scale-canvas-wrap">
+      <canvas id="scaleCanvas" width="320" height="210"></canvas>
+    </div>
+    <button class="action-btn" id="scaleBtn" type="button">⚖️ Взвесить любовь</button>
+    <p class="scale-answer" id="scaleAnswer"></p>
+  </section>
+
+  <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-line"></div></div>
+
+  <!-- BATTLE GAME -->
+  <p class="section-label observe">⚔️ что победит?</p>
+  <section class="battle-wrap observe" id="battleSection">
+    <p class="battle-q" id="battleQ"></p>
+    <div class="battle-options" id="battleOpts"></div>
+    <p class="battle-result" id="battleResult"></p>
+    <button class="action-btn battle-next" id="battleNext" type="button">Следующий раунд ➜</button>
+  </section>
+
+  <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-line"></div></div>
+
+  <!-- QUIZ -->
+  <p class="section-label observe">💌 знаешь ли ты меня?</p>
+  <section class="quiz-wrap observe">
+    <div class="quiz-card glass">
+      <div class="quiz-progress" id="quizProgress"></div>
+      <p class="quiz-q" id="quizQ"></p>
+      <div class="quiz-options" id="quizOpts"></div>
+      <p class="quiz-feedback" id="quizFeedback"></p>
+      <div class="quiz-result" id="quizResult">
+        <h3 id="quizResultTitle"></h3>
+        <p id="quizResultText"></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-line"></div></div>
+
+  <!-- 🍾 SPIN THE BOTTLE -->
+  <p class="section-label observe">🍾 крутим бутылочку</p>
+  <section class="spin-section observe">
+    <div class="spin-container glass">
+      <h2 class="spin-title">Игра на встречу ✨</h2>
+      <p class="spin-subtitle">Крути — и что выпадет, то Тигран получит при встрече 😏</p>
+      <div class="spin-wheel-wrap">
+        <div class="spin-pointer">💘</div>
+        <canvas id="spinCanvas" width="280" height="280"></canvas>
+      </div>
+      <button class="spin-btn" id="spinBtn" type="button">🍾 Крутить!</button>
+      <div class="spin-result-wrap">
+        <span class="spin-result-emoji" id="spinEmoji"></span>
+        <p class="spin-result-text" id="spinText"></p>
+        <p class="spin-result-sub" id="spinSub"></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-line"></div></div>
+
+  <!-- WORD REVEAL -->
+  <p class="section-label observe">послание — только для тебя</p>
+  <section style="text-align:center;padding:8px 0 16px">
+    <h2 class="msg-main observe" id="msgMain">
+      <span class="mw">Ты</span><span class="mw">—</span><span class="mw">причина,</span>
+      <span class="mw">по которой</span><span class="mw"><em>всё</em></span>
+      <span class="mw">кажется</span><span class="mw">возможным.</span>
+    </h2>
+    <p class="msg-body observe">
+      Куда бы ни привела нас жизнь, я несу тебя в себе —<br>
+      в каждом рассвете, который хочу разделить с тобой,<br>
+      и в каждую ночь, когда я благодарен судьбе за тебя.
+    </p>
+  </section>
+
+  <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-line"></div></div>
+
+  <!-- LOVE LIST -->
+  <p class="section-label observe">то, что я люблю в тебе</p>
+  <div class="love-list">
+    <div class="love-item observe"><span class="love-icon">💗</span><p class="love-text"><strong>Люблю, как ты улыбаешься,</strong> когда думаешь, что никто не видит — та настоящая улыбка, которая освещает всё вокруг.</p></div>
+    <div class="love-item observe"><span class="love-icon">🌹</span><p class="love-text"><strong>Люблю твою силу —</strong> тихую, непоказную. Ты идёшь вперёд даже когда трудно, и я восхищаюсь этим.</p></div>
+    <div class="love-item observe"><span class="love-icon">😍</span><p class="love-text"><strong>Люблю тебя целиком —</strong> со всеми мыслями, настроениями, мечтами. Ты не должна быть идеальной. Ты уже совершенна.</p></div>
+    <div class="love-item observe"><span class="love-icon">🥹</span><p class="love-text"><strong>Благодарен каждому дню,</strong> когда знаю, что ты есть. Это больше, чем я мог мечтать.</p></div>
+    <div class="love-item observe"><span class="love-icon">💐</span><p class="love-text"><strong>С 8 Марта, Кянкс!</strong> Пусть этот день напомнит тебе — ты прекрасна, ты ценна, ты любима сегодня и всегда. 🌸</p></div>
+  </div>
+
+  <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-line"></div></div>
+
+  <!-- SCRATCH -->
+  <p class="section-label observe">секретное послание</p>
+  <section class="scratch-outer observe">
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--soft);margin-bottom:1.2rem;font-size:clamp(.9rem,3.5vw,1rem);text-align:center;line-height:1.6">Потри пальцем, чтобы открыть<br>скрытое признание 🌹</p>
+    <div class="scratch-stack" id="scratchStack">
+      <!-- bottom canvas: confession text drawn here -->
+      <canvas id="scratchBg"></canvas>
+      <!-- top canvas: opaque cover, scratched away -->
+      <canvas id="scratchTop"></canvas>
+    </div>
+    <p class="scratch-hint" id="scratchHint">✨ Теперь ты знаешь мой секрет</p>
+  </section>
+
+  <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-line"></div></div>
+
+  <!-- DESIRE SURVEY -->
+  <p class="section-label observe">скажи мне, что ты хочешь 🔥</p>
+  <section class="desire-section observe" id="desireSection">
+    <div class="desire-container glass">
+      <h2 class="desire-title">Твои желания — мой приказ</h2>
+      <p class="desire-subtitle">Выбери всё, что тебе нравится. Я запомню каждый пункт 😏</p>
+      <div class="desire-grid" id="desireGrid"></div>
+      <div class="desire-result" id="desireResult"></div>
+      <button class="action-btn" id="desireRevealBtn" type="button" style="display:none;margin-top:1.2rem">💌 Показать мой ответ</button>
+    </div>
+  </section>
+
+  <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-line"></div></div>
+
+  <!-- FANTASY CARDS (flip reveal) -->
+  <p class="section-label observe">тайные фантазии 🃏</p>
+  <section class="fantasy-section observe">
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--soft);text-align:center;margin-bottom:1.4rem;font-size:clamp(.9rem,3.5vw,1.05rem);line-height:1.7">Переверни каждую карту — и узнай, что я хочу сделать с тобой 🔥</p>
+    <div class="fantasy-grid" id="fantasyGrid"></div>
+  </section>
+
+  <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-line"></div></div>
+
+  <!-- PLEASURE WHEEL -->
+  <p class="section-label observe">🌹 что сегодня вечером?</p>
+  <section class="pleasure-section observe">
+    <div class="pleasure-container glass">
+      <h2 class="desire-title">Колесо наслаждений</h2>
+      <p class="desire-subtitle">Крути — и это я сделаю тебе при встрече 😈</p>
+      <div class="spin-wheel-wrap">
+        <div class="spin-pointer">🔥</div>
+        <canvas id="pleasureCanvas" width="280" height="280"></canvas>
+      </div>
+      <button class="spin-btn" id="pleasureBtn" type="button">🌹 Крутить!</button>
+      <div class="spin-result-wrap">
+        <span class="spin-result-emoji" id="pleasureEmoji"></span>
+        <p class="spin-result-text" id="pleasureText"></p>
+        <p class="spin-result-sub" id="pleasureSub"></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-line"></div></div>
+
+  <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-line"></div></div>
+
+  <!-- HIS DESIRES -->
+  <p class="section-label observe">мои желания — для тебя 🔥</p>
+  <section class="his-desires-section observe">
+    <div class="his-desires-container glass">
+      <h2 class="desire-title" style="margin-bottom:.4rem">Что я хочу сделать с тобой</h2>
+      <p class="desire-subtitle">Нажми на каждую карточку — и узнай мои самые откровенные желания 😈</p>
+      <div id="hisDesiresList"></div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-line"></div></div>
+
+  <!-- TENDER WHISPERS -->
+  <p class="section-label observe">нежные слова для тебя 🌸</p>
+  <section class="tender-section observe">
+    <div class="tender-container glass">
+      <h2 class="desire-title">То, что я чувствую</h2>
+      <p class="desire-subtitle">Нажимай — я буду говорить тебе то, что думаю 💕</p>
+      <div class="tender-display">
+        <p class="tender-text" id="tenderText">Нажми кнопку и позволь мне говорить... 🌹</p>
+      </div>
+      <button class="action-btn" id="tenderBtn" type="button">💌 Следующее слово</button>
+    </div>
+  </section>
+
+  <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-line"></div></div>
+
+  <!-- MASTER JOURNEY -->
+  <p class="section-label observe">🔒 только когда ты одна — для нас двоих</p>
+  <section class="journey-section observe">
+    <div class="journey-container glass">
+      <div class="journey-intro" id="journeyIntro">
+        <div class="journey-lock-icon">🔐</div>
+        <h2 class="journey-main-title">Я веду тебя</h2>
+        <p class="journey-main-sub">Это игра только для нас. Я буду вести тебя от самого начала до конца — шаг за шагом, приказ за приказом. Ты не можешь пропустить ни одного шага. Ты делаешь всё, что я скажу. Правило одно — пока не выполнишь условие, следующий шаг закрыт.<br><br>Убедись, что ты одна. Ляг или сядь поудобнее. Закрой дверь.</p>
+        <button class="action-btn journey-start-btn" id="journeyStartBtn" type="button">🔓 Я одна. Я готова.</button>
+      </div>
+
+      <!-- PHASE HEADER (shown during game) -->
+      <div class="journey-game" id="journeyGame" style="display:none">
+        <div class="journey-phase-banner" id="journeyPhaseBanner">
+          <span class="journey-phase-label" id="journeyPhaseLabel"></span>
+          <span class="journey-phase-name" id="journeyPhaseName"></span>
+        </div>
+        <div class="journey-progress-wrap">
+          <div class="journey-progress-bar" id="journeyProgressBar"></div>
+        </div>
+        <div class="journey-step-counter" id="journeyStepCounter"></div>
+
+        <!-- STEP CARD -->
+        <div class="journey-card glass" id="journeyCard">
+          <div class="journey-card-phase-dot" id="journeyCardDot"></div>
+          <p class="journey-instruction" id="journeyInstruction"></p>
+          <div class="journey-timer-wrap" id="journeyTimerWrap" style="display:none">
+            <div class="journey-timer-ring">
+              <svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="26" fill="none" stroke="rgba(212,132,154,.2)" stroke-width="4"/><circle id="journeyTimerCircle" cx="30" cy="30" r="26" fill="none" stroke="url(#jtg)" stroke-width="4" stroke-linecap="round" stroke-dasharray="163.4" stroke-dashoffset="0" transform="rotate(-90 30 30)"/><defs><linearGradient id="jtg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ebb5c2"/><stop offset="100%" stop-color="#a85e7a"/></linearGradient></defs></svg>
+              <span class="journey-timer-num" id="journeyTimerNum"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONDITION GATE -->
+        <div class="journey-gate" id="journeyGate" style="display:none">
+          <div class="journey-gate-inner glass">
+            <p class="journey-gate-icon" id="journeyGateIcon"></p>
+            <p class="journey-gate-text" id="journeyGateText"></p>
+            <div class="journey-gate-actions" id="journeyGateActions"></div>
+          </div>
+        </div>
+
+        <!-- NEXT BUTTON -->
+        <button class="action-btn journey-next-btn" id="journeyNextBtn" type="button" style="display:none">➜ Выполнено — дальше</button>
+        <p class="journey-hint" id="journeyHint"></p>
+      </div>
+
+      <!-- FINALE -->
+      <div class="journey-finale" id="journeyFinale" style="display:none">
+        <div class="journey-finale-emoji">🌹</div>
+        <h2 class="journey-finale-title">Хорошая девочка</h2>
+        <p class="journey-finale-text">Ты прошла всё до конца. Именно такой я тебя и хочу — послушной, горячей, полностью моей. Теперь представь: я лежу рядом с тобой. Провожу рукой по твоей щеке. Целую тебя долго. И говорю тихо: <em>«ты моя — и ты прекрасна».</em> 🌹</p>
+        <button class="action-btn" id="journeyRestartBtn" type="button" style="margin-top:1.4rem">🔄 Снова с начала</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-line"></div></div>
+
+  <!-- FEELINGS FOR HER -->
+  <p class="section-label observe">то, что живёт в моём сердце — для тебя 💗</p>
+  <section class="feelings-section observe">
+    <div class="feelings-container glass">
+      <div class="feelings-header">
+        <h2 class="feelings-main-title">Кянкс,<br>я хочу, чтобы ты <em>знала</em></h2>
+        <p class="feelings-intro">Я не всегда умею говорить это вслух. Слова иногда застревают — потому что чувства слишком большие для них. Но сегодня — читай медленно. Это всё правда.</p>
+      </div>
+      <div class="feelings-blocks">
+
+        <div class="feelings-block observe">
+          <span class="fb-label">как я тебя хочу</span>
+          <p class="fb-text">Когда ты рядом, я не могу думать ни о чём другом. <em>Только о тебе.</em> О твоей коже. О том, как ты двигаешься, как дышишь. Я хочу тебя так — это физически ощутимо. В груди, в руках, везде. Хочу обнять тебя и не отпускать. Хочу касаться тебя медленно, изучать каждый сантиметр. Хочу, чтобы ты <strong>чувствовала — ты желанна. Безумно.</strong></p>
+        </div>
+
+        <div class="feelings-block observe">
+          <span class="fb-label">как я тебя люблю</span>
+          <p class="fb-text">Это не просто слово. Когда я говорю «люблю» — я имею в виду: <em>«ты моя любимая часть существования».</em> Люблю, как ты думаешь. Как ты молчишь. Как улыбаешься, когда тебе хорошо. Люблю твои недостатки — они часть тебя, а ты целиком — <strong>совершенна.</strong> Я не представляю жизнь, в которой тебя нет.</p>
+        </div>
+
+        <div class="feelings-block observe">
+          <span class="fb-label">насколько ты важна</span>
+          <p class="fb-text"><strong>Ты не просто важна — ты центр.</strong> Всё моё устроено вокруг твоего счастья, твоей безопасности, твоего тепла. Когда тебе плохо — мне плохо. Когда ты смеёшься — это лучшая минута дня. <em>Ты не знаешь, как сильно ты меняешь всё вокруг — просто своим присутствием.</em></p>
+        </div>
+
+        <div class="feelings-block observe">
+          <span class="fb-label">твоя цена</span>
+          <p class="fb-text">Ты бесценна — и это не красивая фраза. <em>Это факт.</em> Таких, как ты, не существует. Твой ум, твоя нежность, твоя сила, твоя красота — <strong>это редкость, которую большинство людей не встретят никогда.</strong> Мне посчастливилось. И я это знаю. Каждый день.</p>
+        </div>
+
+        <div class="feelings-block observe">
+          <span class="fb-label">чего я больше всего боюсь</span>
+          <p class="fb-text">Я боюсь только одного — <em>не быть рядом с тобой.</em> Всё остальное решаемо, временно, неважно. Ты — не временно. Ты — то единственное, <strong>за что я держусь</strong>, когда что-то идёт не так. Ты моя точка опоры. Мой дом.</p>
+        </div>
+
+        <div class="feelings-block observe">
+          <span class="fb-label">о нашей близости</span>
+          <p class="fb-text">Когда мы близко — мне не нужно ничего больше. Не нужен весь мир, если ты рядом. <em>Твоё дыхание рядом — это уже счастье.</em> А когда я касаюсь тебя — я чувствую, что мы одно целое. Это самое настоящее, что я когда-либо чувствовал.</p>
+        </div>
+
+        <div class="feelings-block observe">
+          <span class="fb-label">моё обещание</span>
+          <p class="fb-text">Обещаю любить тебя — <strong>честно, полностью, без условий.</strong> Обещаю замечать тебя каждый день. Смотреть на тебя. Хотеть тебя. <em>Выбирать тебя — каждый день, заново, сознательно.</em> Не потому что должен. Потому что ты — моё лучшее. Всегда.</p>
+        </div>
+
+      </div>
+      <div class="feelings-closing">
+        <p class="feelings-closing-text">Ты — <em>моё лучшее.</em><br>И я хочу быть твоим лучшим тоже.</p>
+        <p class="feelings-sig">— Тигран, для Анюты. Навсегда. 🌹</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-line"></div></div>
+
+  <!-- LETTER -->
+  <p class="section-label observe">письмо для тебя</p>
+  <section class="letter-wrap observe">
+    <div class="letter-envelope" id="letterEnv">
+      <div class="envelope-body" id="envBody">
+        <div class="envelope-flap"></div>
+        <div class="envelope-inner">
+          <p class="letter-text">
+            <strong>Кянкс,</strong><br><br>
+            Я не всегда умею красиво говорить вслух. Слова иногда застревают там, где чувства слишком большие.<br><br>
+            Но сегодня я хочу, чтобы ты знала: ты не одна. Никогда. Я здесь. За экраном, рядом, везде — я думаю о тебе, я за тебя, я с тобой.<br><br>
+            Когда тебе страшно — я твой щит. Когда грустно — я твоё тепло. Когда смешно — я рядом смеяться вместе.<br><br>
+            Ты заслуживаешь всего лучшего. И я буду делать всё, чтобы ты это чувствовала — каждый день.
+          </p>
+          <p class="letter-sign">Вечно твой, Тигран 🌹</p>
+        </div>
+        <div class="env-tap">🌸 нажми на конверт, чтобы открыть 🌸</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-line"></div></div>
+
+  <!-- SHIELD -->
+  <section class="shield-wrap observe">
+    <div class="shield-svg-wrap">
+      <svg class="shield-icon" viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="sg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f7dde4"/><stop offset="50%" stop-color="#d4849a"/><stop offset="100%" stop-color="#a85e7a"/></linearGradient>
+          <linearGradient id="sg2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ead9b0"/><stop offset="100%" stop-color="#c9a05a"/></linearGradient>
+        </defs>
+        <path d="M50 5 L92 22 L92 55 C92 78 72 95 50 105 C28 95 8 78 8 55 L8 22 Z" fill="url(#sg1)" stroke="rgba(168,94,122,.3)" stroke-width="1.5"/>
+        <path d="M50 18 L80 30 L80 55 C80 72 67 84 50 92 C33 84 20 72 20 55 L20 30 Z" fill="url(#sg2)" opacity=".3"/>
+        <text x="50" y="64" text-anchor="middle" font-size="28" font-family="serif">♥</text>
+      </svg>
+    </div>
+    <h2 class="shield-title">Я всегда рядом,<br><em>Кянкс</em></h2>
+    <p class="shield-text">Это не просто красивые слова. Это обещание, которое я держу каждый день — невидимо, молча, но всегда. Ты под защитой. Ты любима.</p>
+    <div class="shield-promises">
+      <div class="promise-item observe"><span class="promise-icon">🛡️</span>Защищу от всего злого</div>
+      <div class="promise-item observe"><span class="promise-icon">🌙</span>Рядом в тёмные ночи</div>
+      <div class="promise-item observe"><span class="promise-icon">💪</span>Твоя сила, когда устанешь</div>
+      <div class="promise-item observe"><span class="promise-icon">🤝</span>Не отпущу твою руку</div>
+      <div class="promise-item observe"><span class="promise-icon">🌤️</span>Солнце после любой тучи</div>
+      <div class="promise-item observe"><span class="promise-icon">💗</span>Любить такой, какая ты есть</div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="div-line"></div><div class="div-gem"></div><div class="div-line"></div></div>
+
+  <!-- SIGNATURE -->
+  <section class="sig-section observe">
+    <p class="sig-from">с любовью и нежностью</p>
+    <span class="sig-names">
+      <span class="name-from">Тигран</span>
+      <span class="sig-arrow">♥</span>
+      <span class="name-to">Кянкс</span>
+    </span>
+    <span class="sig-rose">🌹</span>
+    <br>
+    <button class="secret-btn" id="secretBtn" type="button">🤫 Тайный шёпот</button>
+  </section>
+
+  <!-- HEART -->
+  <section class="surprise-section">
+    <p class="surp-hint">и последний сюрприз...</p>
+    <button class="heart-btn" id="heartBtn" type="button" aria-label="Сюрприз">
+      <div class="heart-icon">
+        <svg class="heart-svg" viewBox="0 0 100 90" fill="none">
+          <defs><linearGradient id="hg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f7dde4"/><stop offset="40%" stop-color="#d4849a"/><stop offset="100%" stop-color="#a85e7a"/></linearGradient></defs>
+          <path d="M50 85 C50 85 5 55 5 28 C5 14 16 5 28 5 C36 5 44 10 50 17 C56 10 64 5 72 5 C84 5 95 14 95 28 C95 55 50 85 50 85Z" fill="url(#hg)"/>
+        </svg>
+      </div>
+      <span class="heart-lbl">нажми на сердце</span>
+    </button>
+  </section>
+
+</div>
+</div>
+<footer>с любовью и нежностью ♥ от Тиграна — для Анюты, моей Кянкс</footer>
+
+<!-- MUSIC PLAYER (fixed position, outside page flow) -->
+<div class="music-player" id="musicPlayer">
+  <button class="music-btn" id="musicBtn" type="button" aria-label="Play music">▶</button>
+  <div class="music-info">
+    <span class="music-title" id="musicTitle">для нас двоих</span>
+    <span class="music-sub" id="musicSub">🎵 нажми, чтобы включить</span>
+  </div>
+  <div class="music-eq paused" id="musicEq">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <button class="music-btn" id="musicNextBtn" type="button" aria-label="Next track" style="font-size:.75rem;width:28px;height:28px;opacity:.75;">⏭</button>
+</div>
+
+<script>
+// ─── CORE UTILS ──────────────────────────────────────────
+function $(id){return document.getElementById(id)}
+
+// Single unified tap handler — fires once per gesture on both touch and mouse.
+// Prevents the double-fire problem of click+touchend on iOS/Android.
+function tap(el, fn) {
+  if (!el) return;
+  let touched = false;
+  el.addEventListener('touchend', function(e) {
+    touched = true;
+    e.preventDefault();
+    fn(e);
+    setTimeout(function(){ touched = false; }, 600);
+  }, {passive: false});
+  el.addEventListener('click', function(e) {
+    if (touched) return; // already handled by touchend
+    fn(e);
+  });
+}
+
+// ─── CURSOR (desktop only) ───────────────────────────────
+var curEl=$('cursor'), ringEl=$('cursorRing');
+var mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', function(e){ mx=e.clientX; my=e.clientY; curEl.style.left=mx+'px'; curEl.style.top=my+'px'; });
+(function lp(){ rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ringEl.style.left=rx+'px'; ringEl.style.top=ry+'px'; requestAnimationFrame(lp); })();
+
+// ─── PETAL CANVAS ────────────────────────────────────────
+var pc=$('petalCanvas'), pctx=pc.getContext('2d');
+var W, H;
+function resizePC(){ W=pc.width=window.innerWidth; H=pc.height=window.innerHeight; }
+resizePC();
+window.addEventListener('resize', resizePC);
+var COLS=['rgba(247,221,228,','rgba(228,216,240,','rgba(201,160,90,','rgba(212,132,154,','rgba(235,181,194,'];
+var mX=200, mY=400;
+document.addEventListener('mousemove', function(e){ mX=e.clientX; mY=e.clientY; });
+document.addEventListener('touchmove', function(e){ if(e.touches[0]){ mX=e.touches[0].clientX; mY=e.touches[0].clientY; } }, {passive:true});
+function Petal(m){this.reset(m);}
+Petal.prototype.reset = function(m){
+  this.x=m?mX+(Math.random()-.5)*50:Math.random()*W;
+  this.y=m?mY+(Math.random()-.5)*50:-20;
+  this.sz=Math.random()*8+3; this.vy=Math.random()*.5+.15; this.vx=(Math.random()-.5)*.3;
+  this.rot=Math.random()*Math.PI*2; this.rv=(Math.random()-.5)*.018;
+  this.op=Math.random()*.35+.1; this.col=COLS[Math.floor(Math.random()*COLS.length)];
+  this.wb=Math.random()*Math.PI*2; this.ws=Math.random()*.014+.006;
+};
+Petal.prototype.tick = function(){ this.wb+=this.ws; this.x+=this.vx+Math.sin(this.wb)*.28; this.y+=this.vy; this.rot+=this.rv; if(this.y>H+20)this.reset(false); };
+Petal.prototype.draw = function(c){ c.save(); c.globalAlpha=this.op; c.translate(this.x,this.y); c.rotate(this.rot); c.fillStyle=this.col+'0.8)'; c.beginPath(); c.ellipse(0,0,this.sz*.5,this.sz,0,0,Math.PI*2); c.fill(); c.restore(); };
+var petalCount = window.innerWidth < 500 ? 18 : 38;
+var ptls = Array.from({length: petalCount}, function(){ return new Petal(false); });
+var lastMP = 0;
+(function animP(){
+  pctx.clearRect(0,0,W,H);
+  var now = Date.now();
+  if(now-lastMP>140){ ptls[Math.floor(Math.random()*ptls.length)].reset(true); lastMP=now; }
+  ptls.forEach(function(p){ p.tick(); p.draw(pctx); });
+  requestAnimationFrame(animP);
+})();
+
+// ─── TOAST ───────────────────────────────────────────────
+var toastTimer = null;
+function showToast(msg, dur){
+  var t=$('toast'); t.innerHTML=msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.classList.remove('show'); }, dur||3800);
+}
+
+// ─── INTRO ───────────────────────────────────────────────
+var intro = $('intro-screen');
+var bloomBtn = $('bloomBtn');
+var introOpened = false;
+function openIntro(){
+  if(introOpened) return;
+  introOpened = true;
+  intro.classList.add('hidden');
+  // Remove from DOM entirely after transition so it never blocks touches
+  setTimeout(function(){ intro.style.display='none'; initObserver(); }, 1600);
+}
+tap(bloomBtn, openIntro);
+
+// ─── INTERSECTION OBSERVER ───────────────────────────────
+function initObserver(){
+  var els = document.querySelectorAll('.observe');
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting) return;
+      var el = en.target;
+      if(el.id==='msgMain'){
+        el.querySelectorAll('.mw').forEach(function(w,i){ setTimeout(function(){ w.classList.add('visible'); }, i*110); });
+      } else {
+        el.classList.add('visible');
+      }
+      obs.unobserve(el);
+    });
+  }, {threshold:.05, rootMargin:'0px 0px -20px 0px'});
+  els.forEach(function(el){ obs.observe(el); });
+}
+
+// ─── REASON MACHINE ──────────────────────────────────────
+var reasons=[
+  'Потому что твои глаза — это целая вселенная, в которой хочется потеряться навсегда 🌌',
+  'Потому что ты смеёшься над моими шутками, даже когда они несмешные. Это и есть <em>любовь</em> 😄',
+  'Потому что рядом с тобой я становлюсь лучшей версией себя ✨',
+  'Потому что ты — Кянкс. Этого достаточно. Это всё объясняет 💗',
+  'Потому что ты умеешь видеть красоту там, где другие не замечают 🌸',
+  'Потому что твоя забота — самое тёплое место на земле 🏠',
+  'Потому что когда ты рядом, мир становится тише и спокойнее 🕊️',
+  'Потому что Анюта — это звук, от которого у меня теплеет в груди 💓',
+  'Потому что ты умеешь молчать рядом так, что тишина становится разговором 🌙',
+  'Потому что ты — тот человек, с которым я хочу делить радость, тишину и обычное воскресенье ☕',
+  'Потому что ты сильнее, чем сама думаешь. Я вижу это каждый день 🦋',
+  'Потому что когда я думаю о счастье, я думаю о тебе 🌹',
+  'Потому что ты не притворяешься. Это самое прекрасное, что в тебе есть 🥹',
+  'Потому что ты — лучший человек, которого я знаю. Без преувеличений 💖',
+  'Потому что одного взгляда на тебя достаточно, чтобы всё стало хорошо 😍'
+];
+var rmUsed=[];
+tap($('rmBtn'), function(){
+  if(rmUsed.length===reasons.length){ rmUsed=[]; showToast('🔄 Начинаем сначала — причин бесконечно!'); }
+  var i; do{ i=Math.floor(Math.random()*reasons.length); }while(rmUsed.includes(i));
+  rmUsed.push(i);
+  var el=$('rmText');
+  el.style.opacity='0'; el.style.transform='translateY(10px)';
+  setTimeout(function(){
+    el.innerHTML=reasons[i]; el.style.opacity='1'; el.style.transform='translateY(0)';
+    $('rmCounter').textContent=rmUsed.length+' из '+reasons.length+' причин открыто';
+    if(rmUsed.length===reasons.length) setTimeout(function(){ showToast('💗 Все причины! На самом деле их бесконечно...'); },600);
+  }, 300);
+});
+
+// ─── LOVE SCALE ──────────────────────────────────────────
+var scC=$('scaleCanvas'), scX=scC.getContext('2d');
+var scAnswers=[
+  {l:'Тяжелее всей Вселенной',s:'(учёные шокированы)'},
+  {l:'Не влезает в измерение',s:'(стрелка сломалась 😅)'},
+  {l:'∞ кг чистой любви',s:'(весы в слезах)'},
+  {l:'Больше, чем звёзд в небе',s:'(астрономы подтверждают)'},
+  {l:'Превышает все лимиты',s:'(система перегружена ❤️)'}
+];
+var scAnim=null;
+function drawScale(tilt,label,sub,progress){
+  var c=scX, w=320, h=210;
+  c.clearRect(0,0,w,h);
+  var bg=c.createLinearGradient(0,0,w,h); bg.addColorStop(0,'rgba(247,221,228,.2)'); bg.addColorStop(1,'rgba(228,216,240,.15)');
+  c.fillStyle=bg; c.beginPath(); if(c.roundRect) c.roundRect(0,0,w,h,14); else c.rect(0,0,w,h); c.fill();
+  c.fillStyle='rgba(201,160,90,.65)'; c.beginPath(); if(c.roundRect) c.roundRect(w/2-36,h-26,72,16,7); else c.rect(w/2-36,h-26,72,16); c.fill();
+  c.strokeStyle='rgba(201,160,90,.75)'; c.lineWidth=3.5; c.beginPath(); c.moveTo(w/2,h-10); c.lineTo(w/2,56); c.stroke();
+  var bx=w/2, by=58, blen=118, ang=tilt*(Math.PI/180);
+  c.save(); c.translate(bx,by); c.rotate(ang);
+  c.strokeStyle='rgba(168,94,122,.75)'; c.lineWidth=2.5; c.lineCap='round'; c.beginPath(); c.moveTo(-blen,0); c.lineTo(blen,0); c.stroke();
+  var ly=28+Math.sin(ang)*blen;
+  c.save(); c.translate(-blen,ly);
+  c.fillStyle='rgba(235,181,194,.55)'; c.beginPath(); c.arc(0,0,25,0,Math.PI*2); c.fill(); c.strokeStyle='rgba(168,94,122,.35)'; c.lineWidth=1.2; c.stroke();
+  c.font='20px serif'; c.textAlign='center'; c.textBaseline='middle'; c.fillText('💗',0,1); c.restore();
+  c.save(); c.translate(blen,-ly);
+  c.fillStyle='rgba(228,216,240,.55)'; c.beginPath(); c.arc(0,0,25,0,Math.PI*2); c.fill(); c.strokeStyle='rgba(168,94,122,.35)'; c.lineWidth=1.2; c.stroke();
+  c.font='20px serif'; c.textAlign='center'; c.textBaseline='middle'; c.fillText('🌌',0,1); c.restore();
+  c.restore();
+  if(label&&progress>0){
+    c.globalAlpha=Math.min(progress*2.5,1);
+    c.fillStyle='rgba(122,58,88,.88)'; c.font='bold 14px Playfair Display,serif'; c.textAlign='center'; c.textBaseline='middle';
+    c.fillText(label,w/2,h-54);
+    if(sub){ c.font='italic 11px Cormorant Garamond,serif'; c.fillStyle='rgba(90,58,80,.65)'; c.fillText(sub,w/2,h-37); }
+    c.globalAlpha=1;
+  }
+  c.fillStyle='rgba(201,160,90,.9)'; c.beginPath(); c.arc(w/2,58,5,0,Math.PI*2); c.fill();
+}
+drawScale(0,null,null,0);
+tap($('scaleBtn'), function(){
+  if(scAnim) cancelAnimationFrame(scAnim);
+  var tgt=-22-Math.random()*20;
+  var ans=scAnswers[Math.floor(Math.random()*scAnswers.length)];
+  var start=null;
+  function anim(ts){
+    if(!start) start=ts;
+    var t=Math.min((ts-start)/1300,1);
+    var ease=1-Math.pow(1-t,4);
+    var wob=t<1?Math.sin(t*22)*(1-t)*3.5:0;
+    drawScale(tgt*ease+wob, t>.65?ans.l:null, t>.82?ans.s:null, Math.max(0,(t-.65)/.35));
+    if(t<1){ scAnim=requestAnimationFrame(anim); }
+    else{
+      var sa=$('scaleAnswer'); sa.textContent=''; sa.classList.remove('show');
+      setTimeout(function(){ sa.textContent='💗 любовь победила всю вселенную'; sa.classList.add('show'); },350);
+      showToast('⚖️ Результат: любовь — ∞, всё остальное — 0 😄');
+    }
+  }
+  scAnim=requestAnimationFrame(anim);
+});
+
+// ─── BATTLE GAME ─────────────────────────────────────────
+var battles=[
+  {q:'Что сильнее?',a:'звёзды',b:'моя любовь к тебе',ea:'⭐',eb:'💗',win:1,res:'Звёзды — красиво. Но моя любовь не гаснет <em>никогда.</em> Победа за 💗'},
+  {q:'Что важнее?',a:'весь интернет',b:'одно твоё «привет»',ea:'📱',eb:'💌',win:1,res:'Одно твоё «привет» делает мой день. <em>Нет конкуренции.</em>'},
+  {q:'Что длиннее?',a:'Великая Китайская стена',b:'список причин любви к тебе',ea:'🏯',eb:'💕',win:1,res:'Список бесконечный. Стена нервно курит в углу 😄'},
+  {q:'Что теплее?',a:'Солнце (5500°C)',b:'твоя улыбка',ea:'☀️',eb:'😊',win:1,res:'Солнце — это газ. Твоя улыбка — это <em>жизнь.</em> 🌸'},
+  {q:'Что вкуснее?',a:'лучший торт в мире',b:'просто быть рядом с тобой',ea:'🎂',eb:'🥰',win:1,res:'Торт съедят. А рядом с тобой я хочу быть <em>вечно.</em> 💗'},
+  {q:'Что ценнее?',a:'весь золотой запас',b:'твоё хорошее настроение',ea:'🪙',eb:'😄',win:1,res:'Золото холодное. Твоя радость — <em>моё богатство.</em> 💛'},
+  {q:'Что быстрее?',a:'свет (300 000 км/с)',b:'мысль о тебе',ea:'⚡',eb:'💭',win:1,res:'Свет опаздывает. Ты уже у меня в голове <em>раньше, чем я думаю.</em> 😏'},
+];
+var bIdx=0;
+function renderBattle(){
+  if(bIdx>=battles.length){
+    $('battleQ').innerHTML='Ты прошла все раунды! <em>Любовь победила всё 💗</em>';
+    $('battleOpts').innerHTML=''; $('battleNext').style.display='none'; $('battleResult').textContent='';
+    showToast('🏆 Итог: любовь — 7, всё остальное — 0 😄');
+    return;
+  }
+  var b=battles[bIdx];
+  $('battleQ').innerHTML=b.q+'<br><em>'+b.a+'</em> или <em>'+b.b+'</em>?';
+  $('battleResult').textContent=''; $('battleResult').classList.remove('show');
+  $('battleNext').style.display='none';
+  var opts=$('battleOpts');
+  opts.innerHTML='<div class="bopt" data-pick="0"><span class="bopt-emoji">'+b.ea+'</span><span class="bopt-label">'+b.a+'</span></div>'
+    +'<div class="bopt" data-pick="1"><span class="bopt-emoji">'+b.eb+'</span><span class="bopt-label">'+b.b+'</span></div>';
+  opts.querySelectorAll('.bopt').forEach(function(el){
+    tap(el, function(){
+      opts.querySelectorAll('.bopt').forEach(function(x){ x.style.pointerEvents='none'; });
+      var v=parseInt(el.dataset.pick);
+      var res=$('battleResult');
+      res.innerHTML=(v===b.win?'✅ ':'😄 ')+b.res;
+      res.classList.add('show');
+      $('battleNext').style.display='inline-flex';
+      showToast(v===b.win?'Правильно! 🎉':'Ну почти... 😄');
+    });
+  });
+}
+renderBattle();
+tap($('battleNext'), function(){ bIdx++; renderBattle(); });
+
+// ─── QUIZ ─────────────────────────────────────────────────
+var qs=[
+  {q:'💭 Что я люблю делать по утрам в выходной?',opts:['Листать телефон','Смотреть на тебя, пока ты спишь 😌','Бежать за кофе','Делать зарядку'],c:1,r:'Именно 😊 Смотреть на тебя — лучшее начало дня.',w:'Загляни в мои глаза по утрам 😉'},
+  {q:'🌹 Как я называю тебя, когда скучаю?',opts:['Анюта','Солнышко','Кянкс 💗','Просто «моя»'],c:2,r:'Кянкс! Это слово само по себе — признание 💕',w:'Но в мыслях ты всегда Кянкс 🌸'},
+  {q:'🎯 Что я считаю самым красивым в тебе?',opts:['Глаза','Улыбку','То, как ты думаешь','Всё и ещё много чего'],c:3,r:'Всё и даже больше ✨',w:'Правда в том, что я имею в виду ВСЁ 💗'},
+  {q:'🛡️ Что я обещаю тебе всегда?',opts:['Дарить цветы','Быть рядом, защищать и любить','Готовить ужин','Не спорить'],c:1,r:'Всегда рядом. Всегда за тебя. Всегда. 🌹',w:'Главное — я всегда рядом и всегда за тебя 💗'},
+  {q:'😄 Что я делаю, когда хочу тебя рассмешить?',opts:['Рассказываю анекдоты','Делаю глупые лица','Говорю неожиданное','Всё перечисленное'],c:3,r:'Всё! Готов на всё ради твоего смеха 😄',w:'Честно — готов на всё 😂'},
+];
+var qI=0, qScore=0, qDone=false;
+function renderQuiz(){
+  $('quizProgress').innerHTML=qs.map(function(q,i){ return '<div class="qp-dot '+(i<qI?'done':i===qI?'current':'')+'"></div>'; }).join('');
+  if(qDone){ $('quizOpts').innerHTML=''; $('quizQ').textContent=''; showQuizResult(); return; }
+  var d=qs[qI];
+  $('quizQ').innerHTML='<span>Вопрос '+(qI+1)+'/'+qs.length+':</span> '+d.q;
+  $('quizFeedback').textContent='';
+  var optsEl=$('quizOpts');
+  optsEl.innerHTML=d.opts.map(function(o,i){ return '<button class="qopt" type="button" data-i="'+i+'">'+o+'</button>'; }).join('');
+  optsEl.querySelectorAll('.qopt').forEach(function(btn){
+    tap(btn, function(){
+      if(btn.dataset.answered) return;
+      optsEl.querySelectorAll('.qopt').forEach(function(b){ b.dataset.answered='1'; b.style.pointerEvents='none'; });
+      var ci=parseInt(btn.dataset.i);
+      if(ci===d.c){ btn.classList.add('correct'); qScore++; $('quizFeedback').textContent='✅ '+d.r; showToast('Правильно! 💗'); }
+      else{ btn.classList.add('wrong'); optsEl.querySelectorAll('.qopt')[d.c].classList.add('correct'); $('quizFeedback').textContent='💭 '+d.w; }
+      setTimeout(function(){ qI++; if(qI>=qs.length) qDone=true; renderQuiz(); },2100);
+    });
+  });
+}
+function showQuizResult(){
+  $('quizResult').style.display='block';
+  var titles=['Нужно узнать меня получше 😄','Уже теплее! 🌸','Ты знаешь меня хорошо! 💕','Почти идеально! 💗','Ты знаешь меня лучше, чем я сам! 💖'];
+  var texts=['У нас впереди целая жизнь 🌹','Главное — ты чувствуешь сердцем 💞','Я рад, что ты замечаешь меня 🥰','Мы так близко — ты внимательная 😘','Кянкс, ты — моя половинка 🌸💗'];
+  var idx=Math.min(qScore,4);
+  $('quizResultTitle').textContent=qScore+'/'+qs.length+' — '+titles[idx];
+  $('quizResultText').textContent=texts[idx];
+  $('quizFeedback').textContent='';
+  showToast('🎉 Викторина пройдена! Я тебя люблю, Кянкс 💗');
+}
+renderQuiz();
+
+// ─── SPIN THE BOTTLE ─────────────────────────────────────
+var spinCanvas=$('spinCanvas'), spCtx=spinCanvas.getContext('2d');
+var WISHES=[
+  {emoji:'😘',name:'Поцелуй',sub:'Один долгий поцелуй — обязательно!',color:'#f7c5d0'},
+  {emoji:'🤗',name:'Объятие',sub:'Крепкое объятие, которое длится целую минуту',color:'#c8b2e0'},
+  {emoji:'💆',name:'Массаж головы',sub:'10 минут нежного массажа — и без отговорок!',color:'#ead9b0'},
+  {emoji:'🥐',name:'Завтрак от Тиграна',sub:'Он готовит тебе завтрак — что захочешь!',color:'#f7dde4'},
+  {emoji:'💃',name:'Потанцуем?',sub:'Один медленный танец, только вы двое',color:'#d4e8d0'},
+  {emoji:'🌹',name:'Цветы',sub:'Букет роз — лично в руки при встрече',color:'#f4b8c8'},
+  {emoji:'😏',name:'Большой сюрприз',sub:'Тигран придумает что-то особенное — доверяй!',color:'#ddd0f0'},
+  {emoji:'👄',name:'1000 поцелуев',sub:'Ладно, начнём с одного. Но очень нежного 😘',color:'#f7b8c8'},
+];
+var N=WISHES.length, spinAngle=0, spinning=false;
+function drawWheel(angle){
+  var c=spCtx, R=140, cx=140, cy=140, slice=2*Math.PI/N;
+  c.clearRect(0,0,280,280);
+  for(var i=0;i<N;i++){
+    var start=angle+i*slice, end=start+slice;
+    c.beginPath(); c.moveTo(cx,cy); c.arc(cx,cy,R,start,end); c.closePath();
+    c.fillStyle=WISHES[i].color; c.fill();
+    c.strokeStyle='rgba(255,255,255,.6)'; c.lineWidth=1.5; c.stroke();
+    c.save(); c.translate(cx,cy); c.rotate(start+slice/2);
+    c.textAlign='center'; c.textBaseline='middle';
+    c.font='22px serif'; c.fillText(WISHES[i].emoji,R*.6,0);
+    c.font='italic 9px Cormorant Garamond,serif'; c.fillStyle='rgba(90,40,60,.8)';
+    c.fillText(WISHES[i].name,R*.6,15);
+    c.restore();
+  }
+  var grad=c.createRadialGradient(cx,cy,0,cx,cy,28);
+  grad.addColorStop(0,'#ead9b0'); grad.addColorStop(1,'#c9a05a');
+  c.beginPath(); c.arc(cx,cy,28,0,Math.PI*2); c.fillStyle=grad; c.fill();
+  c.strokeStyle='rgba(255,255,255,.7)'; c.lineWidth=2; c.stroke();
+  c.font='18px serif'; c.textAlign='center'; c.textBaseline='middle'; c.fillText('🍾',cx,cy+1);
+}
+drawWheel(0);
+function doSpin(){
+  if(spinning) return;
+  $('spinEmoji').style.display='none'; $('spinText').style.display='none'; $('spinSub').style.display='none';
+  spinning=true; $('spinBtn').disabled=true;
+  var extra=2*Math.PI*(3+Math.random()*4);
+  var startAngle=spinAngle, startTime=performance.now(), duration=3500+Math.random()*1000;
+  function frame(now){
+    var t=Math.min((now-startTime)/duration,1);
+    var ease=1-Math.pow(1-t,4);
+    spinAngle=startAngle+extra*ease;
+    drawWheel(spinAngle);
+    if(t<1){ requestAnimationFrame(frame); }
+    else{
+      spinAngle=spinAngle%(2*Math.PI); spinning=false; $('spinBtn').disabled=false;
+      var slice=2*Math.PI/N;
+      var ptr=(-Math.PI/2 - spinAngle%(2*Math.PI) + 2*Math.PI*10) % (2*Math.PI);
+      var idx=Math.floor(ptr/slice)%N;
+      var w=WISHES[idx];
+      var em=$('spinEmoji'), tx=$('spinText'), sb=$('spinSub');
+      em.textContent=w.emoji; em.style.display='block';
+      em.style.animation='none'; void em.offsetWidth; em.style.animation='';
+      tx.innerHTML='<em>'+w.name+'</em>'; tx.style.display='block';
+      sb.innerHTML=w.sub; sb.style.display='block';
+      showToast('🎉 Выпало: '+w.name+'! При встрече — обязательно! 😘',5000);
+    }
+  }
+  requestAnimationFrame(frame);
+}
+tap($('spinBtn'), doSpin);
+
+// ─── SCRATCH CARD ────────────────────────────────────────
+(function(){
+  var dpr=Math.min(window.devicePixelRatio||1,2);
+  var cW=Math.min(320,Math.floor(window.innerWidth*.88));
+  var cH=200;
+  var stack=$('scratchStack');
+  stack.style.width=cW+'px'; stack.style.height=cH+'px';
+  var bg=$('scratchBg');
+  bg.width=cW*dpr; bg.height=cH*dpr;
+  bg.style.width=cW+'px'; bg.style.height=cH+'px'; bg.style.display='block';
+  var bgX=bg.getContext('2d'); bgX.scale(dpr,dpr);
+  var bgGrad=bgX.createLinearGradient(0,0,cW,cH);
+  bgGrad.addColorStop(0,'#fceef3'); bgGrad.addColorStop(1,'#f4ecf8');
+  bgX.fillStyle=bgGrad; bgX.fillRect(0,0,cW,cH);
+  for(var i=0;i<6;i++){
+    bgX.beginPath(); bgX.fillStyle='rgba(235,181,194,.12)';
+    bgX.arc(Math.random()*cW,Math.random()*cH,Math.random()*35+15,0,Math.PI*2); bgX.fill();
+  }
+  bgX.textAlign='center'; bgX.textBaseline='middle';
+  var lines=[
+    {t:'Анюта, ты — лучшее,',f:'italic bold '+Math.round(cW*.05)+'px Playfair Display,serif',c:'rgba(122,58,88,.9)'},
+    {t:'что случилось со мной.',f:'italic bold '+Math.round(cW*.05)+'px Playfair Display,serif',c:'rgba(122,58,88,.9)'},
+    {t:'Я люблю тебя больше,',f:'italic '+Math.round(cW*.044)+'px Playfair Display,serif',c:'rgba(90,58,80,.8)'},
+    {t:'чем умею говорить словами.',f:'italic '+Math.round(cW*.044)+'px Playfair Display,serif',c:'rgba(168,94,122,.9)'},
+    {t:'💗',f:Math.round(cW*.09)+'px serif',c:'rgba(0,0,0,1)'},
+  ];
+  var totalH=lines.length*(cH*0.162);
+  var y=cH/2-totalH/2+cH*0.07;
+  lines.forEach(function(l){ bgX.font=l.f; bgX.fillStyle=l.c; bgX.fillText(l.t,cW/2,y); y+=cH*0.162; });
+  var top=$('scratchTop');
+  top.width=cW*dpr; top.height=cH*dpr;
+  top.style.width=cW+'px'; top.style.height=cH+'px';
+  top.style.position='absolute'; top.style.top='0'; top.style.left='0';
+  top.style.touchAction='none';
+  var topX=top.getContext('2d'); topX.scale(dpr,dpr);
+  function drawCover(){
+    var g=topX.createLinearGradient(0,0,cW,cH);
+    g.addColorStop(0,'#d4849a'); g.addColorStop(.5,'#a85e7a'); g.addColorStop(1,'#c9a05a');
+    topX.fillStyle=g; topX.fillRect(0,0,cW,cH);
+    for(var i=0;i<14;i++){
+      topX.beginPath(); topX.fillStyle='rgba(255,255,255,.1)';
+      topX.arc(Math.random()*cW,Math.random()*cH,Math.random()*22+6,0,Math.PI*2); topX.fill();
+    }
+    topX.fillStyle='rgba(255,255,255,.88)'; topX.textAlign='center'; topX.textBaseline='middle';
+    topX.font='bold '+Math.round(cW*.054)+'px serif'; topX.fillText('✦  Потри здесь  ✦',cW/2,cH/2-10);
+    topX.font='italic '+Math.round(cW*.038)+'px Cormorant Garamond,serif';
+    topX.fillStyle='rgba(255,255,255,.72)'; topX.fillText('Скрытое признание ждёт тебя',cW/2,cH/2+14);
+  }
+  drawCover();
+  var isSc=false, scDone=false;
+  function scratchAt(px,py){
+    topX.globalCompositeOperation='destination-out';
+    topX.beginPath(); topX.arc(px,py,24,0,Math.PI*2); topX.fill();
+    if(!scDone){
+      var d=topX.getImageData(0,0,top.width,top.height).data;
+      var t=0; for(var i=3;i<d.length;i+=4) if(d[i]<32) t++;
+      if(t/(top.width*top.height)>.5){ scDone=true; $('scratchHint').classList.add('show'); showToast('🌹 Секрет открыт! Это правда.',4500); }
+    }
+  }
+  function getPos(e,cv){
+    var r=cv.getBoundingClientRect(), s=cv.width/(dpr*r.width);
+    if(e.touches&&e.touches[0]) return {x:(e.touches[0].clientX-r.left)*s, y:(e.touches[0].clientY-r.top)*s};
+    return {x:(e.clientX-r.left)*s, y:(e.clientY-r.top)*s};
+  }
+  top.addEventListener('mousedown',function(e){ isSc=true; var p=getPos(e,top); scratchAt(p.x,p.y); });
+  top.addEventListener('mousemove',function(e){ if(!isSc)return; var p=getPos(e,top); scratchAt(p.x,p.y); });
+  top.addEventListener('mouseup',function(){ isSc=false; });
+  top.addEventListener('mouseleave',function(){ isSc=false; });
+  top.addEventListener('touchstart',function(e){ e.preventDefault(); isSc=true; var p=getPos(e,top); scratchAt(p.x,p.y); },{passive:false});
+  top.addEventListener('touchmove',function(e){ e.preventDefault(); if(!isSc)return; var p=getPos(e,top); scratchAt(p.x,p.y); },{passive:false});
+  top.addEventListener('touchend',function(e){ e.preventDefault(); isSc=false; },{passive:false});
+})();
+
+// ─── DESIRE SURVEY ────────────────────────────────────────
+var desireItems=[
+  {e:'👅',t:'Когда ты целуешь меня в шею'},
+  {e:'🌹',t:'Долгий, медленный поцелуй'},
+  {e:'🔥',t:'Когда ты шепчешь мне на ухо'},
+  {e:'💋',t:'Нежный кунилингус — долго, не торопясь'},
+  {e:'🌊',t:'Кунилингус — пока я не задрожу'},
+  {e:'✋',t:'Когда ты держишь меня крепко'},
+  {e:'🌙',t:'Медленно, нежно, без спешки'},
+  {e:'⚡',t:'Страстно и интенсивно'},
+  {e:'🦋',t:'Нежные прикосновения по всему телу'},
+  {e:'🪄',t:'Ты полностью контролируешь'},
+  {e:'😈',t:'Я контролирую темп'},
+  {e:'🛏️',t:'Позиция сверху'},
+  {e:'🌸',t:'Позиция сзади, очень глубоко'},
+  {e:'💞',t:'Лицом к лицу, глаза в глаза'},
+  {e:'🎯',t:'Пальцы + язык одновременно'},
+  {e:'🍯',t:'Массаж перед всем остальным'},
+];
+var desireGrid=$('desireGrid'), selectedDesires=new Set();
+desireItems.forEach(function(item,idx){
+  var el=document.createElement('div');
+  el.className='desire-item';
+  el.innerHTML='<span class="desire-item-emoji">'+item.e+'</span><span>'+item.t+'</span>';
+  tap(el, function(){
+    if(selectedDesires.has(idx)){ selectedDesires.delete(idx); el.classList.remove('selected'); }
+    else{ selectedDesires.add(idx); el.classList.add('selected'); }
+    var res=$('desireResult'), revBtn=$('desireRevealBtn');
+    if(selectedDesires.size===0){ res.classList.remove('show'); revBtn.style.display='none'; return; }
+    revBtn.style.display='inline-flex';
+    res.innerHTML='Ты выбрала <em>'+selectedDesires.size+'</em> желания. Я запомнил каждое 🔥';
+    res.classList.add('show');
+  });
+  desireGrid.appendChild(el);
+});
+tap($('desireRevealBtn'), function(){
+  showToast('🔥 Записано. При встрече — я исполню всё это, не пропущу ни одного пункта 😈',5000);
+});
+
+// ─── FANTASY CARDS ────────────────────────────────────────
+var fantasies=[
+  {front:'🔥',hint:'переверни',backE:'👅',back:'Начну с поцелуев — долго, пока ты не попросишь большего 💋'},
+  {front:'🌹',hint:'тайна',backE:'🌊',back:'Возьму тебя за бёдра и буду целовать тебя там, пока ты не задрожишь 🥵'},
+  {front:'🌙',hint:'открой',backE:'✨',back:'Нежно разденем тебя, не торопясь, целуя каждый сантиметр кожи'},
+  {front:'💫',hint:'секрет',backE:'🪄',back:'Пальцы и язык — одновременно, медленно, следя за твоей реакцией 🔥'},
+  {front:'🎴',hint:'переверни',backE:'💞',back:'Хочу смотреть тебе в глаза, пока мы очень близко, очень медленно'},
+  {front:'⚡',hint:'тайна',backE:'😈',back:'Буду держать тебя и не дам двигаться — пока ты сама не попросишь 🌶️'},
+];
+var fantGrid=$('fantasyGrid');
+fantasies.forEach(function(f,i){
+  var card=document.createElement('div');
+  card.className='fcard';
+  card.innerHTML='<div class="fcard-inner"><div class="fcard-front"><div class="fcard-front-emoji">'+f.front+'</div><div class="fcard-front-hint">✦ '+f.hint+' ✦</div></div><div class="fcard-back"><div class="fcard-back-emoji">'+f.backE+'</div><p class="fcard-back-text">'+f.back+'</p></div></div>';
+  tap(card, function(){ card.classList.toggle('flipped'); if(card.classList.contains('flipped')) showToast('🔥 Фантазия открыта...',3000); });
+  fantGrid.appendChild(card);
+});
+
+// ─── PLEASURE WHEEL ───────────────────────────────────────
+var PLEASURES=[
+  {emoji:'👅',name:'Кунилингус',sub:'Долго, нежно, пока не попросишь остановиться 🌊',color:'#f7c5d0'},
+  {emoji:'💋',name:'Поцелуи везде',sub:'Шея, плечи, живот — каждый сантиметр твоей кожи',color:'#ddd0f0'},
+  {emoji:'🤲',name:'Массаж тела',sub:'Начну со спины и спущусь ниже, очень медленно',color:'#ead9b0'},
+  {emoji:'🌹',name:'Твой оргазм',sub:'Мне важно только одно: чтобы ты кончила первой 😈',color:'#f4b8c8'},
+  {emoji:'🔥',name:'Страстно',sub:'Быстро, глубоко, крепко держа тебя',color:'#f7dde4'},
+  {emoji:'🌸',name:'Нежно',sub:'Медленно, лицом к лицу, шёпотом на ухо',color:'#d4e8d0'},
+  {emoji:'😏',name:'Моё решение',sub:'Я выберу сам — и тебе очень понравится',color:'#c8b2e0'},
+  {emoji:'💞',name:'Всё и сразу',sub:'Руки, губы, язык — одновременно, везде',color:'#f0c4d4'},
+];
+var plC=$('pleasureCanvas'), plCtx=plC.getContext('2d');
+var PLN=PLEASURES.length, plAngle=0, plSpinning=false;
+function drawPleasureWheel(angle){
+  var c=plCtx, R=140, cx=140, cy=140, slice=2*Math.PI/PLN;
+  c.clearRect(0,0,280,280);
+  for(var i=0;i<PLN;i++){
+    var start=angle+i*slice, end=start+slice;
+    c.beginPath(); c.moveTo(cx,cy); c.arc(cx,cy,R,start,end); c.closePath();
+    c.fillStyle=PLEASURES[i].color; c.fill();
+    c.strokeStyle='rgba(255,255,255,.65)'; c.lineWidth=1.5; c.stroke();
+    c.save(); c.translate(cx,cy); c.rotate(start+slice/2);
+    c.textAlign='center'; c.textBaseline='middle';
+    c.font='22px serif'; c.fillText(PLEASURES[i].emoji,R*.6,0);
+    c.font='italic 8.5px Cormorant Garamond,serif'; c.fillStyle='rgba(90,40,60,.85)';
+    c.fillText(PLEASURES[i].name,R*.6,15); c.restore();
+  }
+  var grad=c.createRadialGradient(cx,cy,0,cx,cy,28);
+  grad.addColorStop(0,'#ead9b0'); grad.addColorStop(1,'#c9a05a');
+  c.beginPath(); c.arc(cx,cy,28,0,Math.PI*2); c.fillStyle=grad; c.fill();
+  c.strokeStyle='rgba(255,255,255,.7)'; c.lineWidth=2; c.stroke();
+  c.font='18px serif'; c.textAlign='center'; c.textBaseline='middle'; c.fillText('🌹',cx,cy+1);
+}
+drawPleasureWheel(0);
+function doPleasureSpin(){
+  if(plSpinning) return;
+  $('pleasureEmoji').style.display='none'; $('pleasureText').style.display='none'; $('pleasureSub').style.display='none';
+  plSpinning=true; $('pleasureBtn').disabled=true;
+  var extra=2*Math.PI*(3+Math.random()*4);
+  var startAngle=plAngle, startTime=performance.now(), duration=3500+Math.random()*1000;
+  function frame(now){
+    var t=Math.min((now-startTime)/duration,1);
+    var ease=1-Math.pow(1-t,4);
+    plAngle=startAngle+extra*ease;
+    drawPleasureWheel(plAngle);
+    if(t<1){ requestAnimationFrame(frame); }
+    else{
+      plAngle=plAngle%(2*Math.PI); plSpinning=false; $('pleasureBtn').disabled=false;
+      var slice=2*Math.PI/PLN;
+      var ptr=(-Math.PI/2 - plAngle%(2*Math.PI) + 2*Math.PI*10) % (2*Math.PI);
+      var idx=Math.floor(ptr/slice)%PLN;
+      var w=PLEASURES[idx];
+      $('pleasureEmoji').textContent=w.emoji; $('pleasureEmoji').style.display='block';
+      $('pleasureText').innerHTML='<em>'+w.name+'</em>'; $('pleasureText').style.display='block';
+      $('pleasureSub').innerHTML=w.sub; $('pleasureSub').style.display='block';
+      showToast('🔥 Выпало: '+w.name+'! Обещаю — именно это и будет 😈',5000);
+    }
+  }
+  requestAnimationFrame(frame);
+}
+tap($('pleasureBtn'), doPleasureSpin);
+
+// ─── MUSIC PLAYER – Web Audio Synthesizer ────────────────
+(function(){
+  var TRACKS=[
+    {title:'Earned It 🔥',     sub:'sensual & deep',      bpm:72,  key:0,  style:'rnb'},
+    {title:'Slow Burn 🌹',     sub:'hot & intimate',      bpm:65,  key:3,  style:'soul'},
+    {title:'Midnight Heat ✨', sub:'dark & electric',     bpm:85,  key:7,  style:'dark'},
+    {title:'Body Language 💃', sub:'seductive rhythm',    bpm:95,  key:5,  style:'groove'},
+    {title:'Closer 💋',        sub:'irresistible groove', bpm:78,  key:9,  style:'rnb'},
+  ];
+  var tIdx=0, playing=false;
+  var ac=null, masterGain=null;
+  var scheduledNodes=[], beatTimeout=null, beat=0;
+
+  function initAC(){
+    if(ac) return;
+    ac = new (window.AudioContext||window.webkitAudioContext)();
+    masterGain = ac.createGain();
+    var comp = ac.createDynamicsCompressor();
+    comp.threshold.value=-12; comp.knee.value=6; comp.ratio.value=4;
+    masterGain.connect(comp); comp.connect(ac.destination);
+    masterGain.gain.value=0;
+  }
+
+  function note(semitone){ return 55 * Math.pow(2, semitone/12); }
+
+  function playNote(freq, type, gainVal, start, dur, detune){
+    var osc=ac.createOscillator();
+    var g=ac.createGain();
+    var filt=ac.createBiquadFilter();
+    filt.type='lowpass'; filt.frequency.value=2400; filt.Q.value=1.2;
+    osc.type=type||'sawtooth';
+    osc.frequency.value=freq;
+    if(detune) osc.detune.value=detune;
+    osc.connect(filt); filt.connect(g); g.connect(masterGain);
+    g.gain.setValueAtTime(0,start);
+    g.gain.linearRampToValueAtTime(gainVal, start+0.01);
+    g.gain.exponentialRampToValueAtTime(0.001, start+dur);
+    osc.start(start); osc.stop(start+dur+0.05);
+    scheduledNodes.push(osc);
+  }
+
+  function playDrum(type, start){
+    if(type==='kick'){
+      var o=ac.createOscillator(), g=ac.createGain();
+      o.connect(g); g.connect(masterGain);
+      o.frequency.setValueAtTime(150,start);
+      o.frequency.exponentialRampToValueAtTime(40,start+0.12);
+      g.gain.setValueAtTime(0.6,start);
+      g.gain.exponentialRampToValueAtTime(0.001,start+0.2);
+      o.start(start); o.stop(start+0.22);
+      scheduledNodes.push(o);
+    } else if(type==='snare'){
+      var buf=ac.createBuffer(1,ac.sampleRate*0.12,ac.sampleRate);
+      var d=buf.getChannelData(0);
+      for(var i=0;i<d.length;i++) d[i]=(Math.random()*2-1);
+      var src=ac.createBufferSource(), hpf=ac.createBiquadFilter(), g2=ac.createGain();
+      hpf.type='highpass'; hpf.frequency.value=1800;
+      src.buffer=buf;
+      src.connect(hpf); hpf.connect(g2); g2.connect(masterGain);
+      g2.gain.setValueAtTime(0.22,start);
+      g2.gain.exponentialRampToValueAtTime(0.001,start+0.1);
+      src.start(start); src.stop(start+0.13);
+      scheduledNodes.push(src);
+    } else if(type==='hihat'){
+      var buf2=ac.createBuffer(1,ac.sampleRate*0.05,ac.sampleRate);
+      var d2=buf2.getChannelData(0);
+      for(var j=0;j<d2.length;j++) d2[j]=(Math.random()*2-1);
+      var src2=ac.createBufferSource(), hpf2=ac.createBiquadFilter(), g3=ac.createGain();
+      hpf2.type='highpass'; hpf2.frequency.value=8000;
+      src2.buffer=buf2;
+      src2.connect(hpf2); hpf2.connect(g3); g3.connect(masterGain);
+      g3.gain.setValueAtTime(0.07,start);
+      g3.gain.exponentialRampToValueAtTime(0.001,start+0.04);
+      src2.start(start); src2.stop(start+0.06);
+      scheduledNodes.push(src2);
+    }
+  }
+
+  // chord progressions per style (semitones above root)
+  var CHORDS={
+    rnb:  [[0,3,7],[5,8,12],[7,10,14],[3,7,10]],
+    soul: [[0,4,7],[8,12,15],[5,9,12],[3,7,10]],
+    dark: [[0,3,7],[2,5,9],[5,8,12],[10,14,17]],
+    groove:[[0,4,7],[7,11,14],[5,9,12],[3,7,10]],
+  };
+
+  var BASS_LINES={
+    rnb:   [0,0,7,0, 5,5,3,3],
+    soul:  [0,0,8,8, 5,5,3,0],
+    dark:  [0,2,0,5, 7,5,3,2],
+    groove:[0,0,5,7, 0,5,7,0],
+  };
+
+  function scheduleBeat(t, track){
+    var bps=track.bpm/60;
+    var step=beat%16;
+    var eighthDur=0.5/bps;
+    var k=track.key;
+    var style=track.style;
+
+    // Kick on 1 and 3 (steps 0,8)
+    if(step===0||step===8) playDrum('kick',t);
+    // Snare on 2 and 4 (steps 4,12)
+    if(step===4||step===12) playDrum('snare',t);
+    // Hi-hat every 8th
+    if(step%2===0) playDrum('hihat',t);
+    // Offbeat hihat
+    if(step%2===1) playDrum('hihat',t);
+
+    // Bass line
+    var bassNote=note(k + BASS_LINES[style][step%8] - 12);
+    if(step%2===0){
+      playNote(bassNote,'sine',0.28,t,eighthDur*1.8,0);
+    }
+
+    // Chord stab on beat 1 and 3
+    if(step===0||step===8){
+      var ci=Math.floor(step/4)%CHORDS[style].length;
+      var chord=CHORDS[style][ci];
+      chord.forEach(function(s){
+        playNote(note(k+s),'triangle',0.06,t,eighthDur*3.5, (Math.random()-0.5)*8);
+      });
+    }
+
+    // Melodic line — plays on beats 2,6,10,14
+    if(step===2||step===6||step===10||step===14){
+      var melNotes=[0,2,3,5,7,8,10,12];
+      var mn=melNotes[Math.floor(Math.random()*melNotes.length)];
+      playNote(note(k+mn+12),'sine',0.09,t,eighthDur*2.5,0);
+    }
+
+    beat++;
+    var nextT=t+eighthDur;
+    beatTimeout=setTimeout(function(){ if(playing) scheduleBeat(nextT, TRACKS[tIdx]); }, (eighthDur-0.05)*1000);
+  }
+
+  function stopAllNodes(){
+    clearTimeout(beatTimeout);
+    scheduledNodes.forEach(function(n){ try{ n.stop(); }catch(e){} });
+    scheduledNodes=[];
+    beat=0;
+  }
+
+  function showTrack(idx){
+    var el=$('musicTitle'); el.style.opacity='0';
+    setTimeout(function(){ el.textContent=TRACKS[idx].title; el.style.opacity='1'; },300);
+    $('musicSub').textContent=TRACKS[idx].sub;
+  }
+
+  function startMusic(){
+    initAC();
+    if(ac.state==='suspended') ac.resume();
+    masterGain.gain.cancelScheduledValues(ac.currentTime);
+    masterGain.gain.setValueAtTime(0,ac.currentTime);
+    masterGain.gain.linearRampToValueAtTime(0.85,ac.currentTime+1.5);
+    playing=true;
+    beat=0;
+    $('musicBtn').textContent='⏸';
+    $('musicEq').classList.remove('paused');
+    showTrack(tIdx);
+    scheduleBeat(ac.currentTime+0.1, TRACKS[tIdx]);
+  }
+
+  function stopMusic(){
+    if(!ac) return;
+    masterGain.gain.cancelScheduledValues(ac.currentTime);
+    masterGain.gain.setValueAtTime(masterGain.gain.value,ac.currentTime);
+    masterGain.gain.linearRampToValueAtTime(0,ac.currentTime+0.4);
+    setTimeout(stopAllNodes,450);
+    playing=false;
+    $('musicBtn').textContent='▶';
+    $('musicEq').classList.add('paused');
+  }
+
+  $('musicTitle').textContent=TRACKS[0].title;
+  $('musicSub').textContent='🎵 нажми, чтобы включить';
+
+  tap($('musicBtn'), function(){ if(playing) stopMusic(); else startMusic(); });
+  tap($('musicNextBtn'), function(){
+    var wasPlaying=playing;
+    if(playing) stopMusic();
+    setTimeout(function(){
+      tIdx=(tIdx+1)%TRACKS.length;
+      showTrack(tIdx);
+      showToast('🎵 '+TRACKS[tIdx].title,2000);
+      if(wasPlaying) startMusic();
+    },500);
+  });
+})();
+
+// ─── HIS DESIRES ─────────────────────────────────────────
+var hisDesires=[
+  {e:'👅',t:'Долгий кунилингус',d:'Хочу уложить тебя, раздвинуть твои ноги и медленно целовать тебя там — языком, губами, не торопясь, пока ты не задрожишь и не скажешь моё имя. Буду слушать каждый твой звук и делать только то, что заставляет тебя стонать громче.'},
+  {e:'🤲',t:'Пальцы внутри тебя',d:'Хочу почувствовать тебя изнутри — медленно, глубоко, следя за каждой твоей реакцией. Один палец, потом два — пока не найду то место, от которого у тебя подгибаются колени. Язык снаружи, пальцы внутри — одновременно.'},
+  {e:'🌹',t:'Согнуть тебя и взять сзади',d:'Хочу взять тебя сзади — крепко держа за бёдра, глубоко, сильно. Чувствовать, как ты открываешься мне. Одной рукой держать твои запястья, другой — гладить тебя спереди, пока я внутри тебя.'},
+  {e:'💋',t:'Поцелуи по всему телу',d:'Начну с шеи — медленно, нежно. Спущусь ниже, к груди, животу, бёдрам. Буду целовать каждый сантиметр твоей кожи, пока ты не станешь просить большего. Ты будешь дрожать ещё до того, как я доберусь куда надо.'},
+  {e:'🔥',t:'Верхом на мне',d:'Хочу лечь и наблюдать, как ты движешься надо мной — в своём темпе, как тебе хочется. Мои руки на твоих бёдрах, взгляд только на тебя. Ты прекрасна, когда берёшь контроль. Хочу видеть тебя именно такой.'},
+  {e:'😈',t:'Крепко держать тебя',d:'Хочу прижать тебя к стене или кровати, держать твои руки — и делать с тобой всё, что хочу. Медленно. Не давая тебе торопить меня. Пока ты не будешь умолять. Это не жёстко — это именно столько контроля, сколько тебе нравится.'},
+  {e:'🌊',t:'Довести тебя до оргазма языком',d:'Только одна цель — твой оргазм. Буду делать всё, что нужно: менять ритм, давление, направление — следить за тобой. Не остановлюсь, пока ты не кончишь. А потом, может быть, начну снова 😏'},
+  {e:'✨',t:'Нежно и медленно — лицом к лицу',d:'Иногда я хочу просто быть близко к тебе — лицом к лицу, медленно, глаза в глаза. Чувствовать твоё дыхание. Целовать тебя в процессе. Говорить тебе на ухо, как ты прекрасна. Самое интимное из всего.'},
+];
+var hdList=$('hisDesiresList');
+hisDesires.forEach(function(d){
+  var card=document.createElement('div');
+  card.className='his-desire-card';
+  card.innerHTML='<div class="hdc-emoji">'+d.e+'</div><div class="hdc-body"><p class="hdc-title">'+d.t+'</p><p class="hdc-detail">'+d.d+'</p><p class="hdc-tap">✦ нажми, чтобы открыть ✦</p></div>';
+  tap(card, function(){ card.classList.toggle('revealed'); if(card.classList.contains('revealed')) showToast(d.e+' '+d.t+'...',2500); });
+  hdList.appendChild(card);
+});
+
+// ─── TENDER WHISPERS ─────────────────────────────────────
+var tenderWords=[
+  'Ты самое красивое, что происходило в моей жизни. <em>Буквально.</em>',
+  'Когда ты смеёшься — у меня перехватывает дыхание. Каждый раз.',
+  'Я хочу касаться тебя так нежно, что ты почувствуешь — тебя боготворят. Потому что так и есть.',
+  'Твоя кожа — самое мягкое место на земле. Я думаю об этом слишком часто.',
+  'Ты заслуживаешь, чтобы тебя раздевали медленно. С поцелуями на каждом сантиметре.',
+  'Хочу просыпаться рядом с тобой и первым делом целовать твою шею.',
+  'Ты красива, когда тихая. Ты ещё красивее, когда тебе хорошо от меня.',
+  'Хочу держать тебя за руку и одновременно касаться тебя там, где ты хочешь.',
+  'Ты заслуживаешь удовольствия. Много удовольствия. Я хочу давать его тебе.',
+  'Буду шептать тебе на ухо, что ты прекрасна — пока мы оба не забудем обо всём остальном.',
+  'Мне нравится, как ты реагируешь на мои прикосновения. Это самое горячее, что я видел.',
+  'Ты — моя самая красивая мысль прямо перед сном.',
+  'Хочу целовать тебя так долго, чтобы ты забыла своё имя. Запомнила только моё.',
+  'Ты прекрасна целиком. И я собираюсь доказать это тебе — очень тщательно.',
+  'После всего — просто держать тебя. Молчать. Дышать рядом. <em>Это тоже счастье.</em>',
+];
+var tenderIdx=0;
+tap($('tenderBtn'), function(){
+  var el=$('tenderText');
+  el.classList.remove('show');
+  setTimeout(function(){ el.innerHTML=tenderWords[tenderIdx%tenderWords.length]; el.classList.add('show'); tenderIdx++; },280);
+});
+setTimeout(function(){ $('tenderText').classList.add('show'); },600);
+
+// ─── MASTER JOURNEY ──────────────────────────────────────
+(function(){
+  var PHASE_NAMES=['✦ Пробуждение','✦ Нарастание','✦ На краю','✦ Финал'];
+  var PHASE_COLS=['#ebb5c2','#d4849a','#a85e7a','#7a3a58'];
+  var steps=[
+    {phase:0,dur:0,instr:'Закрой дверь. Ляг на спину. Вытяни руки вдоль тела. Закрой глаза на 30 секунд и просто дыши — медленно, глубоко. Ты моя, и я здесь рядом. <em>Почувствуй это.</em>',hint:'не торопись — дай себе время',gate:{icon:'😌',text:'Ты закрыла глаза и почувствовала меня рядом?',buttons:[{label:'Да, я готова 🌸',pass:true},{label:'Нет, ещё минуту',pass:false}]}},
+    {phase:0,dur:20,instr:'Медленно проведи обеими ладонями по своей шее — сверху вниз. Не торопись. <em>Это мои руки.</em> Почувствуй каждое касание. Дыши.',hint:'20 секунд — только ладони и шея',gate:null},
+    {phase:0,dur:0,instr:'Теперь кончиками пальцев — по ключицам. Медленно. Слева направо. Потом вниз — по груди, по животу. <em>Я изучаю тебя.</em> Остановись там, где тебе приятно.',hint:'не двигайся дальше, пока не почувствуешь тепло',gate:{icon:'🌡️',text:'Ты почувствовала тепло? Ты уже немного возбуждена?',buttons:[{label:'Да, чувствую 🔥',pass:true},{label:'Ещё нет — повторю',pass:false}]}},
+    {phase:0,dur:30,instr:'Положи одну руку на живот — ниже пупка. Почувствуй своё дыхание под ладонью. Прошепчи вслух: <em>«Я хочу тебя, Тигран»</em>. Не важно, тихо или громко — только честно.',hint:'скажи это вслух — это важно',gate:{icon:'🤫',text:'Ты сказала это вслух?',buttons:[{label:'Сказала 😳',pass:true},{label:'Скажу сейчас',pass:false}]}},
+    {phase:1,dur:0,instr:'Переверни руку. Медленно проведи пальцами по внутренней стороне бедра — снизу вверх. Остановись у самого края. <em>Не касайся ещё.</em> Просто держи руку там. Чувствуй, как ты хочешь большего.',hint:'не торопи — ожидание само по себе приятно',gate:{icon:'🦋',text:'Ты чувствуешь, как внутри всё сжимается от ожидания?',buttons:[{label:'Да, мне уже хочется больше 😈',pass:true},{label:'Ещё нет',pass:false}]}},
+    {phase:1,dur:40,instr:'Теперь — второй рукой тихонько касайся себя снаружи, поверх одежды или без. Медленно. Очень медленно. <em>Я не позволяю тебе торопиться.</em> Если ты двигаешься быстро — замедлись вдвое.',hint:'40 секунд — медленно, поверхностно, никакого давления',gate:null},
+    {phase:1,dur:0,instr:'Стоп. Убери руку. Сделай три глубоких вдоха. <em>Я специально остановил тебя.</em> Я хочу, чтобы ты почувствовала — я контролирую тебя. Только когда я разрешу — ты продолжишь.',hint:'просто дыши — не прикасайся',gate:{icon:'😏',text:'Ты хочешь продолжить? Скажи мне.',buttons:[{label:'Пожалуйста, продолжи 🥺',pass:true},{label:'Мне нужно больше 🔥',pass:true}]}},
+    {phase:1,dur:50,instr:'Хорошо. Теперь — под одеждой. Пальцы на себя. Медленно рисуй круги — нежно, без спешки. <em>Это мой язык.</em> Представь, что это я. Мои губы. Моё дыхание у твоих бёдер.',hint:'50 секунд — только круги, никакого давления внутрь',gate:null},
+    {phase:1,dur:0,instr:'Чувствуешь, как ты мокрая? Хорошо. <em>Именно такой я тебя и хочу.</em> Скажи это вслух: «я мокрая для тебя». Ничего стыдного — это честно. Это прекрасно.',hint:'скажи вслух — это обязательно',gate:{icon:'💧',text:'Ты сказала это?',buttons:[{label:'Сказала. Это правда 🥵',pass:true},{label:'Скажу ещё раз',pass:false}]}},
+    {phase:2,dur:0,instr:'Теперь — пальцы внутрь. Медленно. Один. Почувствуй себя изнутри. <em>Это мои пальцы.</em> Я хочу знать каждый сантиметр тебя. Двигайся медленно — вперёд-назад. Не торопись.',hint:'не торопи — чувствуй каждое движение',gate:{icon:'🌊',text:'Ты чувствуешь меня?',buttons:[{label:'Да, я чувствую тебя 😮‍💨',pass:true}]}},
+    {phase:2,dur:60,instr:'Не останавливайся. Продолжай — медленно. А другой рукой — снаружи, сверху. Одновременно. <em>Это я — везде.</em> Пальцы внутри, большой палец снаружи. Найди ритм. <strong>Медленно. Я приказываю.</strong>',hint:'60 секунд — двумя руками, одновременно',gate:null},
+    {phase:2,dur:0,instr:'Стоп. Снова. <em>Я снова останавливаю тебя.</em> Убери руки. Сожми бёдра вместе. Почувствуй, как сильно ты хочешь продолжить. Это я держу тебя на краю.',hint:'не трогай себя — просто чувствуй',gate:{icon:'😈',text:'Ты хочешь, чтобы я разрешил?',buttons:[{label:'Пожалуйста — разреши мне 🥺',pass:true},{label:'Я больше не могу ждать 🔥',pass:true}]}},
+    {phase:2,dur:0,instr:'Хорошая девочка. Скажи моё имя. Громко. <em>Именно так, как говоришь его в самый лучший момент.</em> Потом можешь продолжить — но только после.',hint:'имя — вслух — это условие',gate:{icon:'🗣️',text:'Ты назвала моё имя?',buttons:[{label:'Тигран 🌹 — да, я сказала',pass:true}]}},
+    {phase:2,dur:75,instr:'Теперь — без остановок. Пальцы внутри, давление снаружи. Найди точку, от которой у тебя подгибаются колени. <em>Это я ищу её.</em> Двигайся в своём ритме — но не ускоряйся слишком быстро.',hint:'75 секунд — ищи свою точку',gate:null},
+    {phase:3,dur:0,instr:'Ты на краю. Я чувствую это. <em>Теперь послушай меня внимательно.</em> Не кончай ещё. Замедлись. Сделай глубокий вдох. Почувствуй, как всё внутри тебя пульсирует. Это я держу тебя прямо здесь. Ты моя.',hint:'замедлись — не прекращай, но замедлись',gate:{icon:'⚡',text:'Ты на краю? Ты ждёшь моего разрешения?',buttons:[{label:'Да — пожалуйста, разреши 🥵',pass:true}]}},
+    {phase:3,dur:0,instr:'Шепни мне кое-что. Скажи вслух: <em>«Ты мой, Тигран. И я твоя.»</em> Потом — я разрешаю тебе всё. Всё, что твоё тело просит прямо сейчас. <strong>Не останавливайся.</strong> Дай себе это.',hint:'скажи это — а потом позволь себе всё',gate:{icon:'🌊',text:'Ты сказала это?',buttons:[{label:'Сказала. Я твоя. 🌹',pass:true}]}},
+    {phase:3,dur:0,instr:'<strong>Теперь.</strong> Не останавливайся ни на секунду. Двигайся так, как хочешь. Быстро или медленно — как нужно твоему телу. <em>Я смотрю на тебя. Я держу тебя.</em> Ты прекрасна прямо сейчас. Позволь себе кончить — для меня.',hint:'это финальный шаг — позволь себе всё',gate:{icon:'🌹',text:'Ты кончила?',buttons:[{label:'Да 🌊 — это было невероятно',pass:true},{label:'Мне нужно ещё немного',pass:false}]}},
+  ];
+  var stepIdx=0, timerInterval=null;
+
+  function updateProgress(){
+    $('journeyProgressBar').style.width=Math.round((stepIdx/steps.length)*100)+'%';
+    var p=steps[stepIdx]?steps[stepIdx].phase:3;
+    $('journeyPhaseLabel').textContent='ФАЗА '+(p+1)+' из 4';
+    $('journeyPhaseName').textContent=PHASE_NAMES[p];
+    $('journeyCardDot').style.background=PHASE_COLS[p];
+    $('journeyCardDot').style.boxShadow='0 0 12px '+PHASE_COLS[p];
+    $('journeyStepCounter').textContent='шаг '+(stepIdx+1)+' из '+steps.length;
+  }
+
+  function clearTimer(){
+    clearInterval(timerInterval); timerInterval=null;
+    $('journeyTimerWrap').style.display='none';
+    $('journeyTimerNum').textContent='';
+    $('journeyTimerCircle').style.strokeDashoffset='0';
+  }
+
+  function startTimer(dur, onDone){
+    clearTimer();
+    $('journeyTimerWrap').style.display='flex';
+    $('journeyNextBtn').style.display='none';
+    var left=dur;
+    var circ=$('journeyTimerCircle'), total=163.4;
+    function render(){ $('journeyTimerNum').textContent=left; circ.style.strokeDashoffset=total*(1-(left/dur)); }
+    render();
+    timerInterval=setInterval(function(){
+      left--;
+      render();
+      if(left<=0){
+        clearTimer();
+        $('journeyNextBtn').style.display='block';
+        showToast('✅ Готова продолжить...',2500);
+        if(onDone) onDone();
+      }
+    },1000);
+  }
+
+  function showGate(gate){
+    $('journeyGate').style.display='block';
+    $('journeyGateIcon').textContent=gate.icon;
+    $('journeyGateText').textContent=gate.text;
+    var acts=$('journeyGateActions'); acts.innerHTML='';
+    gate.buttons.forEach(function(b){
+      var btn=document.createElement('button');
+      btn.className='gate-btn'+(b.pass?' primary':'');
+      btn.textContent=b.label; btn.type='button';
+      tap(btn, function(){
+        $('journeyGate').style.display='none';
+        if(b.pass){ stepIdx++; showStep(); }
+        else{ showToast('😏 Хорошо — повтори ещё раз 🔥',2500); }
+      });
+      acts.appendChild(btn);
+    });
+  }
+
+  function showStep(){
+    if(stepIdx>=steps.length){ showFinale(); return; }
+    var s=steps[stepIdx];
+    updateProgress();
+    $('journeyHint').textContent=s.hint||'';
+    var ins=$('journeyInstruction');
+    ins.classList.remove('show');
+    $('journeyGate').style.display='none';
+    $('journeyNextBtn').style.display='none';
+    clearTimer();
+    setTimeout(function(){ ins.innerHTML=s.instr; ins.classList.add('show'); },320);
+    if(s.dur>0){
+      setTimeout(function(){
+        startTimer(s.dur, function(){ if(!s.gate){ $('journeyNextBtn').style.display='block'; } else{ showGate(s.gate); } });
+      },600);
+    } else {
+      setTimeout(function(){
+        if(!s.gate){ $('journeyNextBtn').style.display='block'; } else{ showGate(s.gate); }
+      },900);
+    }
+  }
+
+  function showFinale(){
+    $('journeyGame').style.display='none';
+    $('journeyFinale').style.display='flex';
+    showToast('🌹 Ты прошла всё. Я люблю тебя.',5000);
+  }
+
+  tap($('journeyStartBtn'), function(){ $('journeyIntro').style.display='none'; $('journeyGame').style.display='block'; stepIdx=0; showStep(); });
+  tap($('journeyNextBtn'), function(){ stepIdx++; showStep(); });
+  tap($('journeyRestartBtn'), function(){ $('journeyFinale').style.display='none'; $('journeyGame').style.display='block'; stepIdx=0; showStep(); });
+})();
+
+// ─── LETTER ───────────────────────────────────────────────
+var letterOpen=false;
+tap($('letterEnv'), function(){
+  if(!letterOpen){ $('envBody').classList.add('open'); letterOpen=true; showToast('💌 Письмо открыто...',3000); }
+});
+
+// ─── SECRET WHISPERS ──────────────────────────────────────
+var whispers=[
+  '🤫 «Когда ты не смотришь, я смотрю на тебя и думаю: как мне так повезло?»',
+  '💗 «Я иногда перечитываю твои старые сообщения. Просто так. Просто потому что.»',
+  '🌙 «Последнее, о чём думаю перед сном — это ты. Каждый раз.»',
+  '😳 «Я немного боюсь, насколько сильно тебя люблю. Но это приятный страх.»',
+  '✨ «Я хочу стать человеком, которого ты заслуживаешь. Это моя главная цель.»',
+  '🌹 «Анюта, ты — моя любимая страница, которую я перечитываю снова и снова.»',
+  '🥹 «Слышу песню и думаю: надо показать Кянкс. Потом понимаю — я думаю о ней всегда.»',
+  '💌 «Если написать письмо прошлому себе — написал бы только одно: береги её.»',
+  '🛡️ «Ты в безопасности. Всегда. Пока я рядом — тебе ничего не угрожает.»',
+  '☕ «Самое счастливое утро — когда ты рядом. Даже без кофе.»',
+];
+var wI=0;
+tap($('secretBtn'), function(){ showToast(whispers[wI%whispers.length],4800); wI++; });
+
+// ─── CONFETTI ─────────────────────────────────────────────
+var cc=$('confetti-canvas'), cctx=cc.getContext('2d');
+var confMsg=$('confettiMsg'), heartBtn=$('heartBtn');
+var cParts=[], cId=null, cOn=false;
+var CEMOJI=['💗','🌸','💕','✨','🌷','💝','🥰','💞','😍','💐','💓','😘','🌹','💖','🥹'];
+function CPetal(){
+  this.x=Math.random()*window.innerWidth; this.y=-20; this.sz=Math.random()*14+6;
+  this.vx=(Math.random()-.5)*4.5; this.vy=Math.random()*3+1.5;
+  this.rot=Math.random()*360; this.rv=(Math.random()-.5)*6; this.op=1;
+  this.col=COLS[Math.floor(Math.random()*COLS.length)];
+  this.isE=Math.random()>.5; this.emoji=CEMOJI[Math.floor(Math.random()*CEMOJI.length)];
+  this.wb=Math.random()*Math.PI*2;
+}
+CPetal.prototype.tick=function(){ this.wb+=.036; this.x+=this.vx+Math.sin(this.wb)*1; this.y+=this.vy; this.rot+=this.rv; this.vy+=.035; if(this.y>window.innerHeight+28)this.op=0; };
+CPetal.prototype.draw=function(c){
+  if(this.isE){ c.save(); c.globalAlpha=this.op*.85; c.font=this.sz*1.6+'px serif'; c.translate(this.x,this.y); c.rotate(this.rot*Math.PI/180); c.fillText(this.emoji,0,0); c.restore(); }
+  else{ c.save(); c.globalAlpha=this.op; c.translate(this.x,this.y); c.rotate(this.rot*Math.PI/180); c.fillStyle=this.col+'0.85)'; c.beginPath(); c.ellipse(0,0,this.sz*.45,this.sz,0,0,Math.PI*2); c.fill(); c.restore(); }
+};
+function launchConf(){
+  cc.width=window.innerWidth; cc.height=window.innerHeight;
+  cParts=Array.from({length:180},function(){ return new CPetal(); });
+  cc.classList.add('active'); confMsg.classList.add('active'); cOn=true;
+  (function lp(){ if(!cOn)return; cctx.clearRect(0,0,cc.width,cc.height); cParts=cParts.filter(function(p){ return p.op>0; }); cParts.forEach(function(p){ p.tick(); p.draw(cctx); }); cId=requestAnimationFrame(lp); })();
+}
+function stopConf(){ cOn=false; cancelAnimationFrame(cId); cc.classList.remove('active'); confMsg.classList.remove('active'); cctx.clearRect(0,0,cc.width,cc.height); }
+tap(heartBtn, launchConf);
+tap(confMsg, stopConf);
+tap($('confCard'), function(e){ /* stop propagation — handled by confCard-specific tap */ });
+// confCard click should not close confetti
+$('confCard').addEventListener('click', function(e){ e.stopPropagation(); }, false);
+$('confCard').addEventListener('touchend', function(e){ e.stopPropagation(); e.preventDefault(); }, {passive:false});
+</script>
+</body>
+</html>
